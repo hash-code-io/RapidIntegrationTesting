@@ -1,7 +1,0 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-	  <Description>Utility Types aiding in integration testing</Description>
-  </PropertyGroup>
-
-</Project>

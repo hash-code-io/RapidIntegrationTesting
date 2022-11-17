@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<Description>Utilities for simplified integration testing, focused on seeding with EntityFramework</Description>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<DocumentationFile>RapidIntegrationTesting.Utility.xml</DocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />
+	</ItemGroup>
+
+
+</Project>

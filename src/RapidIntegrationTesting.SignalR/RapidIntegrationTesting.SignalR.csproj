@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-	  <Description>Utilities for simplified testing of SignalR connections</Description>
-  </PropertyGroup>
+	<PropertyGroup>
+		<Description>Utilities for simplified testing of SignalR connections</Description>
+	</PropertyGroup>
 
 	<PropertyGroup>
 		<DocumentationFile>RapidIntegrationTesting.SignalR.xml</DocumentationFile>
