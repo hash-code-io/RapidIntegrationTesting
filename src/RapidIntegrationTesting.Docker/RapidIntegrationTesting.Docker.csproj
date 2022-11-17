@@ -4,4 +4,12 @@
 		<Description></Description>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <PackageReference Include="Testcontainers" Version="2.2.0" />
+	</ItemGroup>
+
+	<PropertyGroup>
+		<DocumentationFile>RapidIntegrationTesting.Docker.xml</DocumentationFile>
+	</PropertyGroup>
+
 </Project>
