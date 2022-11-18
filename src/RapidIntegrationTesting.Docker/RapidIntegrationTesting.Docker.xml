@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RapidIntegrationTesting.Docker</name>
+    </assembly>
+    <members>
+        <member name="T:RapidIntegrationTesting.Docker.BootstrapperCache">
+            <summary>
+                Cache for all bootstrappers
+            </summary>
+        </member>
+        <member name="M:RapidIntegrationTesting.Docker.BootstrapperCache.#ctor(System.Type[])">
+            <summary>
+                Construct a new <see cref="T:RapidIntegrationTesting.Docker.BootstrapperCache" /> given an array of marker types pointing to assemblies containing implementations of <see cref="T:RapidIntegrationTesting.Docker.IContainerBootstrapper`1" />
+            </summary>
+            <param name="assmeblyMarkers">assemblies containing implementations of <see cref="T:RapidIntegrationTesting.Docker.IContainerBootstrapper`1" /></param>
+        </member>
+        <member name="M:RapidIntegrationTesting.Docker.BootstrapperCache.DisposeAsync">
+            <inheritdoc />
+        </member>
+        <member name="M:RapidIntegrationTesting.Docker.BootstrapperCache.GetCachedContainer``1">
+            <summary>
+                Gets a cached container
+            </summary>
+            <typeparam name="TContainer">The type of container to get</typeparam>
+            <returns>The cached contaienr instance</returns>
+        </member>
+        <member name="M:RapidIntegrationTesting.Docker.BootstrapperCache.ReleaseCachedContainer``1">
+            <summary>
+                Releases a cached container to free resources
+            </summary>
+            <typeparam name="TContainer">The type of container to release</typeparam>
+            <returns>An awaitable task</returns>
+        </member>
+        <member name="T:RapidIntegrationTesting.Docker.ContainerBootstrapper`1">
+            <inheritdoc />
+        </member>
+        <member name="M:RapidIntegrationTesting.Docker.ContainerBootstrapper`1.Bootstrap">
+            <inheritdoc />
+        </member>
+        <member name="M:RapidIntegrationTesting.Docker.ContainerBootstrapper`1.GetContainer">
+            <inheritdoc />
+        </member>
+        <member name="M:RapidIntegrationTesting.Docker.ContainerBootstrapper`1.DisposeAsync">
+            <inheritdoc />
+        </member>
+        <member name="M:RapidIntegrationTesting.Docker.ContainerBootstrapper`1.ConfigureContainer(DotNet.Testcontainers.Builders.TestcontainersBuilder{`0})">
+            <summary>
+                Configure the container using the given <paramref name="builder" />
+            </summary>
+            <param name="builder">The builder to configure the container with</param>
+        </member>
+        <member name="T:RapidIntegrationTesting.Docker.IContainerBootstrapper`1">
+            <summary>
+                Base Interface for all Container Bootstrappers
+            </summary>
+            <typeparam name="TContainer">The type of container to bootstrap</typeparam>
+        </member>
+        <member name="M:RapidIntegrationTesting.Docker.IContainerBootstrapper`1.Bootstrap">
+            <summary>
+                Starts the bootstrapping process
+            </summary>
+            <returns>An awaitable task containing the bootstrapped container</returns>
+        </member>
+        <member name="M:RapidIntegrationTesting.Docker.IContainerBootstrapper`1.GetContainer">
+            <summary>
+                The bootstrapped container once it is initialized. Otherwise throws an exception
+            </summary>
+            <returns>The container</returns>
+        </member>
+    </members>
+</doc>

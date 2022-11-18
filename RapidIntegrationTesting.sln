@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RapidIntegrationTesting.Sig
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RapidIntegrationTesting.Utility", "src\RapidIntegrationTesting.Utility\RapidIntegrationTesting.Utility.csproj", "{93DE12C1-434C-48AB-A2E6-A230C7E76CC8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RapidIntegrationTesting.Docker.Tests", "test\RapidIntegrationTesting.Docker.Tests\RapidIntegrationTesting.Docker.Tests.csproj", "{F9642B99-304F-4C2B-918D-63D9AD302D88}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{93DE12C1-434C-48AB-A2E6-A230C7E76CC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93DE12C1-434C-48AB-A2E6-A230C7E76CC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93DE12C1-434C-48AB-A2E6-A230C7E76CC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9642B99-304F-4C2B-918D-63D9AD302D88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9642B99-304F-4C2B-918D-63D9AD302D88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9642B99-304F-4C2B-918D-63D9AD302D88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9642B99-304F-4C2B-918D-63D9AD302D88}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,6 +63,7 @@ Global
 		{21AFACCD-DDF7-46A9-B8A3-EE4E5656801A} = {10A7527E-54C1-4CED-A451-6FC2672577B4}
 		{39D59703-1E3B-4A78-9644-E4BFA0F99195} = {10A7527E-54C1-4CED-A451-6FC2672577B4}
 		{93DE12C1-434C-48AB-A2E6-A230C7E76CC8} = {10A7527E-54C1-4CED-A451-6FC2672577B4}
+		{F9642B99-304F-4C2B-918D-63D9AD302D88} = {1144D6AA-C4BB-416A-A061-17721EC6C63C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C8F8947F-9AD8-4BEC-9277-B21003A6DEEA}
