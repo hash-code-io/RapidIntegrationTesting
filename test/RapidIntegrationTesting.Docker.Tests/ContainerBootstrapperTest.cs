@@ -18,7 +18,7 @@ public class SqlContainerBootstrapper : ContainerBootstrapper<MsSqlTestcontainer
 public class AzuriteContainerBootstrapper : ContainerBootstrapper<AzuriteTestcontainer>
 {
     protected override ITestcontainersBuilder<AzuriteTestcontainer> ConfigureContainer(TestcontainersBuilder<AzuriteTestcontainer> builder)
-        => builder.WithAzurite(new AzuriteTestcontainerConfiguration("mcr.microsoft.com/azure-storage/azurite:3.20.1") { DebugModeEnabled = true }).WithAutoRemove(false);
+        => builder.WithAzurite(new AzuriteTestcontainerConfiguration("mcr.microsoft.com/azure-storage/azurite:3.20.1"));
 }
 
 public class RabbitMqContainerBootstrapper : ContainerBootstrapper<RabbitMqTestcontainer>
