@@ -1,0 +1,171 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RapidIntegrationTesting.Utility</name>
+    </assembly>
+    <members>
+        <member name="T:RapidIntegrationTesting.Utility.Extensions.IntegrationTestExtensions">
+            <summary>
+                Extensions
+            </summary>
+        </member>
+        <member name="M:RapidIntegrationTesting.Utility.Extensions.IntegrationTestExtensions.GetRelativePathToController(System.String,System.String)">
+            <summary>
+                Gets the relative path to the controller (endpoints). Path to reach the controller is expected to be in "api/v{apiVersion}/{ControllerName}" format
+            </summary>
+            <param name="controllerName">Simple Name of the controller, i.e. "WeatherForecastController"</param>
+            <param name="apiVersion">api version to use</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:RapidIntegrationTesting.Utility.Extensions.IntegrationTestExtensions.AsRelativeUri(System.String)">
+            <summary>
+                Returns the relative uri to the given url
+            </summary>
+            <param name="url"></param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:RapidIntegrationTesting.Utility.Extensions.IntegrationTestExtensions.AsRelativeUri(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+                Returns the relative uri to the given url
+            </summary>
+            <param name="url"></param>
+            <param name="queryParams"></param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:RapidIntegrationTesting.Utility.Extensions.IntegrationTestExtensions.AsRelativeUri(System.String,System.ValueTuple{System.String,System.String}[])">
+            <summary>
+                Returns the relative uri to the given url
+            </summary>
+            <param name="url"></param>
+            <param name="queryParams"></param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="T:RapidIntegrationTesting.Utility.Seeder.DbContextFactories.DbContextCreator`1">
+            <summary>
+                Callback to create a DbContext
+            </summary>
+            <typeparam name="TDbContext">The type of DbContext</typeparam>
+            <returns>The create DbContext</returns>
+        </member>
+        <member name="T:RapidIntegrationTesting.Utility.Seeder.EntityIdRetriever`1">
+            <summary>
+                Function to retrieve Ids for given entity
+            </summary>
+            <typeparam name="TEntity">The type of entity</typeparam>
+        </member>
+        <member name="T:RapidIntegrationTesting.Utility.Seeder.IdRetriever">
+            <summary>
+                Function to retrieve Ids by given state
+            </summary>
+            <returns>The id</returns>
+        </member>
+        <member name="T:RapidIntegrationTesting.Utility.Seeder.TestSeeder`1">
+            <summary>
+                Class used for seeding test data
+            </summary>
+            <typeparam name="TDbContext">Type of DbContext</typeparam>
+        </member>
+        <member name="M:RapidIntegrationTesting.Utility.Seeder.TestSeeder`1.#ctor(System.IServiceProvider)">
+            <summary>
+                Constructs an instance using a service provider that has the correctly configured type of DbContext present in its services
+            </summary>
+            <param name="serviceProvider">The service provider</param>
+        </member>
+        <member name="M:RapidIntegrationTesting.Utility.Seeder.TestSeeder`1.#ctor(RapidIntegrationTesting.Utility.Seeder.DbContextFactories.DbContextCreator{`0})">
+            <summary>
+                Constructs an instance using the provided creator function
+            </summary>
+            <param name="dbContextCreator">The creator function</param>
+        </member>
+        <member name="P:RapidIntegrationTesting.Utility.Seeder.TestSeeder`1.DbContext">
+            <summary>
+                The DbContext managed by this Seeder
+            </summary>
+        </member>
+        <member name="M:RapidIntegrationTesting.Utility.Seeder.TestSeeder`1.DisposeAsync">
+            <inheritdoc />
+        </member>
+        <member name="M:RapidIntegrationTesting.Utility.Seeder.TestSeeder`1.Unseed``1(RapidIntegrationTesting.Utility.Seeder.IdRetriever)">
+            <summary>
+                Adds an entity to "unseed". This will try to delete the entity during clean-up phase. This call is NOT required for entity added by this seeder
+            </summary>
+            <typeparam name="TEntity">The type of entity</typeparam>
+            <param name="idRetriever">A function to retrieve the entity's id</param>
+            <returns>This instance</returns>
+        </member>
+        <member name="M:RapidIntegrationTesting.Utility.Seeder.TestSeeder`1.Execute">
+            <summary>
+                Ends the configuration chain and seeds all entities
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RapidIntegrationTesting.Utility.Seeder.TestSeeder`1.Create``1(``0,RapidIntegrationTesting.Utility.Seeder.EntityIdRetriever{``0})">
+            <summary>
+                Adds an entity to the DbContext and the internal tracker to be cleaned up during clean-up phase
+            </summary>
+            <typeparam name="T">The type of entity</typeparam>
+            <param name="entity">the instance of the entity</param>
+            <param name="idRetriever">A function to retrieve the entity's id</param>
+        </member>
+        <member name="M:RapidIntegrationTesting.Utility.Seeder.TestSeeder`1.Create``1(``0,System.String)">
+            <summary>
+                Adds an entity to the DbContext and the internal tracker to be cleaned up during clean-up phase. Id will be retrieved via reflection using the given <paramref name="idPropertyName" />
+            </summary>
+            <typeparam name="T">The type of entity</typeparam>
+            <param name="entity">the instance of the entity</param>
+            <param name="idPropertyName">The name of the property holding the id</param>
+        </member>
+        <member name="M:RapidIntegrationTesting.Utility.Seeder.TestSeeder`1.Create``1(``0,System.String[])">
+            <summary>
+                Adds an entity to the DbContext and the internal tracker to be cleaned up during clean-up phase. Id will be retrieved via reflection using the given <paramref name="idPropertyNames" />
+            </summary>
+            <typeparam name="T">The type of entity</typeparam>
+            <param name="entity">the instance of the entity</param>
+            <param name="idPropertyNames">Array of keyvalues</param>
+        </member>
+        <member name="M:RapidIntegrationTesting.Utility.Seeder.TestSeeder`1.FindCreated``1(System.Func{``0,System.Boolean})">
+            <summary>
+                Finds a created entity via the given predicate.
+                <para>
+                    NOTE: ALWAYS prefer the overload that accepts keyValues instead of this one if possible
+                </para>
+            </summary>
+            <typeparam name="T">The type of entity</typeparam>
+            <param name="predicate">The predicate to retrieve the entity by</param>
+            <returns></returns>
+        </member>
+        <member name="M:RapidIntegrationTesting.Utility.Seeder.TestSeeder`1.FindCreated``1(System.Object[])">
+            <summary>
+                Finds a created entity via the keyValues
+            </summary>
+            <typeparam name="T">The type of entity</typeparam>
+            <param name="keyValues">The keyValues to retrive the entity by</param>
+            <returns></returns>
+        </member>
+        <member name="M:RapidIntegrationTesting.Utility.Seeder.TestSeeder`1.FindRequiredCreated``1(System.Func{``0,System.Boolean})">
+            <summary>
+                Finds a created entity via the given predicate, throwing an exception if the entity was not found
+                <para>
+                    NOTE: ALWAYS prefer the overload that accepts keyValues instead of this one if possible
+                </para>
+            </summary>
+            <typeparam name="T">The type of entity</typeparam>
+            <param name="predicate">The predicate to retrieve the entity by</param>
+            <returns></returns>
+            <exception cref="T:System.InvalidOperationException"></exception>
+        </member>
+        <member name="M:RapidIntegrationTesting.Utility.Seeder.TestSeeder`1.FindRequiredCreated``1(System.Object[])">
+            <summary>
+                Finds a created entity via the keyValues, throwing an exception if the entity was not found
+            </summary>
+            <typeparam name="T">The type of entity</typeparam>
+            <param name="keyValues">The keyValues to retrive the entity by</param>
+            <returns></returns>
+            <exception cref="T:System.InvalidOperationException"></exception>
+        </member>
+    </members>
+</doc>

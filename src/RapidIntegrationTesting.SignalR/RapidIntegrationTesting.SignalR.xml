@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RapidIntegrationTesting.SignalR</name>
+    </assembly>
+    <members>
+        <member name="T:RapidIntegrationTesting.SignalR.ISignalRCallbackDescriptor">
+            <summary>
+                Descriptor holding information about SignalR Callbacks
+            </summary>
+        </member>
+        <member name="M:RapidIntegrationTesting.SignalR.ISignalRCallbackDescriptor.Setup(Microsoft.AspNetCore.SignalR.Client.HubConnection)">
+            <summary>
+                Adds the callback of this descriptor to the given <paramref name="hubConnection" />
+            </summary>
+            <param name="hubConnection">The connection to add the callback to</param>
+            <returns>The subscription to the signalR connection. Dispose this to no longer receive notifications of incoming events</returns>
+        </member>
+        <member name="T:RapidIntegrationTesting.SignalR.SignalRCallbackDescriptorExtensions">
+            <summary>
+                Extensions
+            </summary>
+        </member>
+        <member name="M:RapidIntegrationTesting.SignalR.SignalRCallbackDescriptorExtensions.RegisterDescriptors(Microsoft.AspNetCore.SignalR.Client.HubConnection,RapidIntegrationTesting.SignalR.ISignalRCallbackDescriptor[])">
+            <summary>
+                Adds the given <paramref name="descriptors" /> to the <paramref name="hubConnection" />
+            </summary>
+            <param name="hubConnection">The connection to add the descriptors to</param>
+            <param name="descriptors">The descriptors to add</param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:RapidIntegrationTesting.SignalR.SignalRCallbackDescriptorExtensions.Build(Microsoft.AspNetCore.SignalR.Client.IHubConnectionBuilder,RapidIntegrationTesting.SignalR.ISignalRCallbackDescriptor[])">
+            <summary>
+                Builds the <see cref="T:Microsoft.AspNetCore.SignalR.Client.HubConnection" /> using the given <paramref name="builder" /> and then adds the given
+                <paramref name="descriptors" />
+            </summary>
+            <param name="builder">The builder to use for building the <see cref="T:Microsoft.AspNetCore.SignalR.Client.HubConnection" /></param>
+            <param name="descriptors">The descriptors to add</param>
+            <returns>The built <see cref="T:Microsoft.AspNetCore.SignalR.Client.HubConnection" /></returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="T:RapidIntegrationTesting.SignalR.SignalRCallbackDescriptorFactory">
+            <summary>
+                Factory to create <see cref="T:RapidIntegrationTesting.SignalR.ISignalRCallbackDescriptor" />.
+            </summary>
+        </member>
+        <member name="M:RapidIntegrationTesting.SignalR.SignalRCallbackDescriptorFactory.Create``1(System.Linq.Expressions.Expression{System.Func{``0,System.Threading.Tasks.Task}},System.Action)">
+            <summary>
+                Produces a Descriptor meant to be added a <see cref="T:Microsoft.AspNetCore.SignalR.Client.HubConnection" />
+            </summary>
+            <typeparam name="TInterface">The interface for the Hub</typeparam>
+            <param name="expression">Expression detailing for which hub method a descriptor is to be returned</param>
+            <param name="handler">The handler to be added to the <see cref="T:Microsoft.AspNetCore.SignalR.Client.HubConnection" /></param>
+            <returns>The created Descriptor</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:RapidIntegrationTesting.SignalR.SignalRCallbackDescriptorFactory.Create``1(System.Linq.Expressions.Expression{System.Func{``0,System.Threading.Tasks.Task}},System.Func{System.Threading.Tasks.Task})">
+            <summary>
+                Produces a Descriptor meant to be added a <see cref="T:Microsoft.AspNetCore.SignalR.Client.HubConnection" />
+            </summary>
+            <typeparam name="TInterface">The interface for the Hub</typeparam>
+            <param name="expression">Expression detailing for which hub method a descriptor is to be returned</param>
+            <param name="handler">The handler to be added to the <see cref="T:Microsoft.AspNetCore.SignalR.Client.HubConnection" /></param>
+            <returns>The created Descriptor</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:RapidIntegrationTesting.SignalR.SignalRCallbackDescriptorFactory.Create``2(System.Linq.Expressions.Expression{System.Func{``0,``1,System.Threading.Tasks.Task}},System.Action{``1})">
+            <summary>
+                Produces a Descriptor meant to be added a <see cref="T:Microsoft.AspNetCore.SignalR.Client.HubConnection" />
+            </summary>
+            <typeparam name="TInterface">The interface for the Hub</typeparam>
+            <typeparam name="TArgument">The argument to the method</typeparam>
+            <param name="expression">Expression detailing for which hub method a descriptor is to be returned</param>
+            <param name="handler">The handler to be added to the <see cref="T:Microsoft.AspNetCore.SignalR.Client.HubConnection" /></param>
+            <returns>The created Descriptor</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:RapidIntegrationTesting.SignalR.SignalRCallbackDescriptorFactory.Create``2(System.Linq.Expressions.Expression{System.Func{``0,``1,System.Threading.Tasks.Task}},System.Func{``1,System.Threading.Tasks.Task})">
+            <summary>
+                Produces a Descriptor meant to be added a <see cref="T:Microsoft.AspNetCore.SignalR.Client.HubConnection" />
+            </summary>
+            <typeparam name="TInterface">The interface for the Hub</typeparam>
+            <typeparam name="TArgument">The argument to the method</typeparam>
+            <param name="expression">Expression detailing for which hub method a descriptor is to be returned</param>
+            <param name="handler">The handler to be added to the <see cref="T:Microsoft.AspNetCore.SignalR.Client.HubConnection" /></param>
+            <returns>The created Descriptor</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="T:RapidIntegrationTesting.SignalR.SignalRTestingCallbackDescriptorFactory">
+            <summary>
+                Factory to create <see cref="T:RapidIntegrationTesting.SignalR.ISignalRCallbackDescriptor" />. Methods contained are meant for testing purposes only
+            </summary>
+        </member>
+        <member name="M:RapidIntegrationTesting.SignalR.SignalRTestingCallbackDescriptorFactory.Create``2(System.Linq.Expressions.Expression{System.Func{``0,``1,System.Threading.Tasks.Task}},System.Threading.Tasks.Task{``1}@,System.Int32)">
+            <summary>
+                Meant for testing purposes only. Produces a Descriptor meant to be added a <see cref="T:Microsoft.AspNetCore.SignalR.Client.HubConnection" />. As soon as
+                an invocation
+                is received the <paramref name="signalReceived" /> task triggers
+                Any additional invocations will throw an exception.
+            </summary>
+            <typeparam name="TInterface">The interface for the Hub</typeparam>
+            <typeparam name="TArgument">The argument to the method</typeparam>
+            <param name="expression">Expression detailing for which hub method a descriptor is to be returned</param>
+            <param name="signalReceived">Task that finishes as soon as an invocation is received</param>
+            <param name="timeout">Amount to timeout after in milliseconds</param>
+            <returns>The created Descriptor</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.TimeoutException"></exception>
+        </member>
+        <member name="M:RapidIntegrationTesting.SignalR.SignalRTestingCallbackDescriptorFactory.Create``1(System.Linq.Expressions.Expression{System.Func{``0,System.Threading.Tasks.Task}},System.Threading.Tasks.Task@,System.Int32)">
+            <summary>
+                Meant for testing purposes only. Produces a Descriptor meant to be added a <see cref="T:Microsoft.AspNetCore.SignalR.Client.HubConnection" />. As soon as
+                an invocation
+                is received the <paramref name="signalReceived" /> task triggers
+                Any additional invocations will throw an exception.
+            </summary>
+            <typeparam name="TInterface">The interface for the Hub</typeparam>
+            <param name="expression">Expression detailing for which hub method a descriptor is to be returned</param>
+            <param name="signalReceived">Task that finishes as soon as an invocation is received</param>
+            <param name="timeout">Amount to timeout after in milliseconds</param>
+            <returns>The created Descriptor</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+    </members>
+</doc>
