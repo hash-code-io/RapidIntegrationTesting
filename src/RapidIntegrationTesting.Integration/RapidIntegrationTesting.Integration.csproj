@@ -8,4 +8,13 @@
 		<DocumentationFile>RapidIntegrationTesting.Integration.xml</DocumentationFile>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="7.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\RapidIntegrationTesting.Docker\RapidIntegrationTesting.Docker.csproj" />
+	  <ProjectReference Include="..\RapidIntegrationTesting.SignalR\RapidIntegrationTesting.SignalR.csproj" />
+	</ItemGroup>
+
 </Project>

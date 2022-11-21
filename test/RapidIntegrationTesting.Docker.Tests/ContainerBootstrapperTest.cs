@@ -71,7 +71,7 @@ public class ContainerBootstrapperTest
 
     // Test is failing for some reason: https://github.com/testcontainers/testcontainers-dotnet/issues/682
     //[Fact]
-    public async Task Should_Create_Azurite_Container()
+    private async Task Should_Create_Azurite_Container()
     {
         // Arrange
         await using var bootstrapper = new AzuriteContainerBootstrapper();

@@ -35,7 +35,7 @@ public abstract class ContainerBootstrapper<TContainer> : IContainerBootstrapper
         _container ??
         throw new InvalidOperationException(
             $"Container uninitialized. Did you forget to call {nameof(Bootstrap)}?");
-
+    
     /// <inheritdoc />
     public ValueTask DisposeAsync()
     {
