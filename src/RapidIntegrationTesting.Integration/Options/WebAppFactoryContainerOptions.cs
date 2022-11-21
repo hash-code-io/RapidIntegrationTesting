@@ -1,4 +1,5 @@
-﻿using RapidIntegrationTesting.Integration.ContainerManagement;
+﻿using RapidIntegrationTesting.Docker;
+using RapidIntegrationTesting.Integration.ContainerManagement;
 using RapidIntegrationTesting.Integration.ContainerManagement.Bootstrapper;
 
 namespace RapidIntegrationTesting.Integration.Options;
@@ -22,4 +23,9 @@ public record WebAppFactoryContainerOptions
     ///     Configurations that should contain all containers used for testing
     /// </summary>
     public List<ContainerConfigureCallback> Configurations { get; set; } = new();
+
+    /// <summary>
+    ///     Marker types for the assemblies containing implementations of <see cref="IContainerBootstrapper{TContainer}" />
+    /// </summary>
+    public List<Type> ContainerBootstrapperAssemblyMarkers { get; set; } = new();
 }

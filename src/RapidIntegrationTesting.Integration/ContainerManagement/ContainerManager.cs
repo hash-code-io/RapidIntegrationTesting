@@ -12,7 +12,11 @@ public class ContainerManager : IAsyncDisposable
     ///     Initializes a new instance of the type
     /// </summary>
     /// <param name="options"></param>
-    public ContainerManager(WebAppFactoryContainerOptions options) => Options = options ?? throw new ArgumentNullException(nameof(options));
+    public ContainerManager(WebAppFactoryContainerOptions options)
+    {
+        Options = options ?? throw new ArgumentNullException(nameof(options));
+        ContainerBootstrapper = new ContainerCache(Options.ContainerBootstrapperAssemblyMarkers);
+    }
 
     /// <summary>
     ///     Options
@@ -22,7 +26,7 @@ public class ContainerManager : IAsyncDisposable
     /// <summary>
     ///     Bootstrapper used to bootstrap containers
     /// </summary>
-    protected IContainerCache ContainerBootstrapper { get; } = new ContainerCache();
+    protected IContainerCache ContainerBootstrapper { get; }
 
     /// <inheritdoc />
     public ValueTask DisposeAsync()

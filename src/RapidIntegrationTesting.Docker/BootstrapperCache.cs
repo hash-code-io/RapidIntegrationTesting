@@ -18,7 +18,7 @@ public sealed class BootstrapperCache : IAsyncDisposable
     ///     Construct a new <see cref="BootstrapperCache" /> given an array of marker types pointing to assemblies containing implementations of <see cref="IContainerBootstrapper{T}" />
     /// </summary>
     /// <param name="assmeblyMarkers">assemblies containing implementations of <see cref="IContainerBootstrapper{T}" /></param>
-    public BootstrapperCache(params Type[] assmeblyMarkers) => _assmeblyMarkers = assmeblyMarkers;
+    public BootstrapperCache(IEnumerable<Type> assmeblyMarkers) => _assmeblyMarkers = assmeblyMarkers.ToArray();
 
     /// <inheritdoc />
     public async ValueTask DisposeAsync()
@@ -41,10 +41,8 @@ public sealed class BootstrapperCache : IAsyncDisposable
 
         try
         {
-            Type bootstrapperType = GetBootstrapperForContainer(containerType);
-
             var bootstrapperInstance = (IContainerBootstrapper<TContainer>)_bootstrappersForContainerType.GetOrAdd(containerType,
-                t => Activator.CreateInstance(bootstrapperType)!);
+                _ => Create<TContainer>());
             _containerRefCounts.AddOrUpdate(containerType, _ => 1, (_, old) => old + 1);
 
             return await bootstrapperInstance.Bootstrap().ConfigureAwait(false);
@@ -52,6 +50,20 @@ public sealed class BootstrapperCache : IAsyncDisposable
         finally
         {
             semaphore.Release();
+        }
+    }
+
+    private IContainerBootstrapper<TContainer> Create<TContainer>() where TContainer : ITestcontainersContainer
+    {
+        Type bootstrapperType = GetBootstrapperForContainer(typeof(TContainer));
+
+        try
+        {
+            return (IContainerBootstrapper<TContainer>)Activator.CreateInstance(bootstrapperType)!;
+        }
+        catch (Exception e)
+        {
+            throw new InvalidOperationException($"Bootstrapper with type [{bootstrapperType.Name}] could not be created. Bootstrappers need to have a parameterless constructor", e);
         }
     }
 

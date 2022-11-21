@@ -9,7 +9,7 @@
                 Cache for all bootstrappers
             </summary>
         </member>
-        <member name="M:RapidIntegrationTesting.Docker.BootstrapperCache.#ctor(System.Type[])">
+        <member name="M:RapidIntegrationTesting.Docker.BootstrapperCache.#ctor(System.Collections.Generic.IEnumerable{System.Type})">
             <summary>
                 Construct a new <see cref="T:RapidIntegrationTesting.Docker.BootstrapperCache" /> given an array of marker types pointing to assemblies containing implementations of <see cref="T:RapidIntegrationTesting.Docker.IContainerBootstrapper`1" />
             </summary>
@@ -44,9 +44,9 @@
         <member name="M:RapidIntegrationTesting.Docker.ContainerBootstrapper`1.DisposeAsync">
             <inheritdoc />
         </member>
-        <member name="M:RapidIntegrationTesting.Docker.ContainerBootstrapper`1.ConfigureContainer(DotNet.Testcontainers.Builders.TestcontainersBuilder{`0})">
+        <member name="M:RapidIntegrationTesting.Docker.ContainerBootstrapper`1.BuildContainer(DotNet.Testcontainers.Builders.ITestcontainersBuilder{`0})">
             <summary>
-                Configure the container using the given <paramref name="builder" />
+                Configure the container using the given <paramref name="builder" />, then return the built container
             </summary>
             <param name="builder">The builder to configure the container with</param>
         </member>
