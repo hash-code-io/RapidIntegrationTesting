@@ -1,31 +1,13 @@
 ﻿using Azure;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
-using DotNet.Testcontainers.Builders;
-using DotNet.Testcontainers.Configurations;
 using DotNet.Testcontainers.Containers;
 using RabbitMQ.Client;
+using RapidIntegrationTesting.Docker.Tests.Setup;
+using StackExchange.Redis;
 using System.Data.SqlClient;
 
 namespace RapidIntegrationTesting.Docker.Tests;
-
-public class SqlContainerBootstrapper : ContainerBootstrapper<MsSqlTestcontainer>
-{
-    protected override ITestcontainersBuilder<MsSqlTestcontainer> ConfigureContainer(TestcontainersBuilder<MsSqlTestcontainer> builder)
-        => builder.WithDatabase(new MsSqlTestcontainerConfiguration { Password = "My@Cool$PassWord123" });
-}
-
-public class AzuriteContainerBootstrapper : ContainerBootstrapper<AzuriteTestcontainer>
-{
-    protected override ITestcontainersBuilder<AzuriteTestcontainer> ConfigureContainer(TestcontainersBuilder<AzuriteTestcontainer> builder)
-        => builder.WithAzurite(new AzuriteTestcontainerConfiguration("mcr.microsoft.com/azure-storage/azurite:3.20.1"));
-}
-
-public class RabbitMqContainerBootstrapper : ContainerBootstrapper<RabbitMqTestcontainer>
-{
-    protected override ITestcontainersBuilder<RabbitMqTestcontainer> ConfigureContainer(TestcontainersBuilder<RabbitMqTestcontainer> builder)
-        => builder.WithMessageBroker(new RabbitMqTestcontainerConfiguration { Password = "guest", Username = "guest" });
-}
 
 public class ContainerBootstrapperTest
 {
@@ -67,6 +49,29 @@ public class ContainerBootstrapperTest
 
         // Assert
         Assert.NotNull(model);
+    }
+
+    [Fact]
+    public async Task Should_Create_Redis()
+    {
+        // Arrange
+        await using var bootstrapper = new RedisContainerBootstrapper();
+        RedisTestcontainer container = await bootstrapper.Bootstrap();
+
+        ConnectionMultiplexer muxer = await ConnectionMultiplexer.ConnectAsync(container.ConnectionString);
+        IDatabase conn = muxer.GetDatabase();
+
+        // Act
+        conn.StringSet("foo", "bar");
+        await muxer.DisposeAsync();
+
+        muxer = await ConnectionMultiplexer.ConnectAsync(container.ConnectionString);
+        conn = muxer.GetDatabase();
+
+        RedisValue result = conn.StringGet("foo");
+
+        // Assert
+        Assert.Equal("bar", result);
     }
 
     // Test is failing for some reason: https://github.com/testcontainers/testcontainers-dotnet/issues/682

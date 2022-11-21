@@ -17,9 +17,8 @@ public abstract class ContainerBootstrapper<TContainer> : IContainerBootstrapper
         try
         {
             if (_container != null) return _container;
-            
-            ITestcontainersBuilder<TContainer> confiuredBuilder = ConfigureContainer(new TestcontainersBuilder<TContainer>());
-            _container = confiuredBuilder.Build();
+
+            _container = BuildContainer(new TestcontainersBuilder<TContainer>());
 
             await _container.StartAsync().ConfigureAwait(false);
             return _container;
@@ -45,8 +44,8 @@ public abstract class ContainerBootstrapper<TContainer> : IContainerBootstrapper
     }
 
     /// <summary>
-    ///     Configure the container using the given <paramref name="builder" />
+    ///     Configure the container using the given <paramref name="builder" />, then return the built container
     /// </summary>
     /// <param name="builder">The builder to configure the container with</param>
-    protected abstract ITestcontainersBuilder<TContainer> ConfigureContainer(TestcontainersBuilder<TContainer> builder);
+    protected abstract TContainer BuildContainer(ITestcontainersBuilder<TContainer> builder);
 }
