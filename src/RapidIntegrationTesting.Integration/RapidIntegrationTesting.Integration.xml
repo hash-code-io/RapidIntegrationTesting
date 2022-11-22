@@ -47,6 +47,11 @@
         <member name="M:RapidIntegrationTesting.Integration.ContainerManagement.ContainerConfigurations.#ctor(System.Collections.Generic.IEnumerable{RapidIntegrationTesting.Integration.Configuration.WebAppConfigurationValue})">
             <inheritdoc />
         </member>
+        <member name="P:RapidIntegrationTesting.Integration.ContainerManagement.ContainerConfigurations.Empty">
+            <summary>
+                Empty list of configuration
+            </summary>
+        </member>
         <member name="T:RapidIntegrationTesting.Integration.ContainerManagement.ContainerManager">
             <summary>
                 Base class for Container Management of the <see cref="T:RapidIntegrationTesting.Integration.TestingWebAppFactory`1" />
@@ -100,11 +105,6 @@
         <member name="P:RapidIntegrationTesting.Integration.Options.WebAppFactoryAuthOptions.DefaultClaims">
             <summary>
                 Default claims to use for authentication. Should not include the "name" claim, as that is set by <see cref="T:RapidIntegrationTesting.Integration.Options.WebAppFactoryAuthOptions" />.<see cref="P:RapidIntegrationTesting.Integration.Options.WebAppFactoryAuthOptions.DefaultTestUserName" />
-            </summary>
-        </member>
-        <member name="T:RapidIntegrationTesting.Integration.Options.ContainerStartCallback">
-            <summary>
-                Callback used to give the user the ability to asynchronously start a container and get Configuration values out of it
             </summary>
         </member>
         <member name="T:RapidIntegrationTesting.Integration.Options.ContainerConfigureCallback">
@@ -215,8 +215,11 @@
                 Callback to configure options
             </summary>
         </member>
-        <member name="M:RapidIntegrationTesting.Integration.TestingWebAppFactory`1.InitializeAsync">
-            <inheritdoc />
+        <member name="M:RapidIntegrationTesting.Integration.TestingWebAppFactory`1.Initialize">
+            <summary>
+                Initializes the Factory. Needs to be called for every instance of this factory BEFORE using (i.e. via XUnit's IAsyncLifetime
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:RapidIntegrationTesting.Integration.TestingWebAppFactory`1.ConfigureSignalRCallbacks(RapidIntegrationTesting.SignalR.ISignalRCallbackDescriptor[])">
             <summary>

@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<Description>RapidIntegrationTesting Integrations with XUnit</Description>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<DocumentationFile>RapidIntegrationTesting.Integration.xUnit.xml</DocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="xunit.extensibility.execution" Version="2.4.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\RapidIntegrationTesting.Integration\RapidIntegrationTesting.Integration.csproj" />
+	</ItemGroup>
+
+</Project>

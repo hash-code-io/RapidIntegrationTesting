@@ -10,7 +10,7 @@ namespace RapidIntegrationTesting.Integration.Auth;
 internal class TestAuthHandler : AuthenticationHandler<AuthenticationSchemeOptions>
 {
     private const string JwtNameClaim = "name";
-    private const string JwtRoleClaim = "name";
+    private const string JwtRoleClaim = "role";
     private readonly WebAppFactoryAuthOptions _options;
     private static List<Claim>? _current;
 

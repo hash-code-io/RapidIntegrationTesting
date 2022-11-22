@@ -16,4 +16,9 @@ public sealed class ContainerConfigurations : List<WebAppConfigurationValue>
     public ContainerConfigurations(IEnumerable<WebAppConfigurationValue> collection) : base(collection)
     {
     }
+
+    /// <summary>
+    ///     Empty list of configuration
+    /// </summary>
+    public static ContainerConfigurations Empty { get; } = new();
 }

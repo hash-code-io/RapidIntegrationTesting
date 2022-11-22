@@ -36,16 +36,16 @@ public abstract class TestingWebAppFactory<TEntryPoint> : WebApplicationFactory<
     /// </summary>
     protected virtual Action<WebAppFactoryOptions> ConfigureOptions => o => { };
 
-    //TODO: implement
-    /// <inheritdoc />
-    public async Task InitializeAsync()
+    /// <summary>
+    ///     Initializes the Factory. Needs to be called for every instance of this factory BEFORE using (i.e. via XUnit's IAsyncLifetime
+    /// </summary>
+    /// <returns></returns>
+    public async Task Initialize()
     {
         IEnumerable<Task<ContainerConfigurations>> containerConfigTasks = _containerManager.StartContainers();
         ContainerConfigurations[] configsArray = await Task.WhenAll(containerConfigTasks).ConfigureAwait(false);
         _containerConfigurations = new ContainerConfigurations(configsArray.SelectMany(x => x));
     }
-
-    //async Task IAsyncLifetime.DisposeAsync() => await DisposeAsync().ConfigureAwait(false);
 
     /// <summary>
     ///     Method to build a <see cref="HubConnection" /> that correctly connects to the server using the DefaultHubToUse configured in the options

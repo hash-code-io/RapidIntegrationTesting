@@ -73,7 +73,7 @@ public static class SetUpExtensions
         builder.Services.AddDbContext<TestDbContext>(opts =>
         {
             opts.UseSqlServer(
-                builder.Configuration["Sql:MS-Test:ConnectionString"], sql =>
+                builder.Configuration[AppConstants.SqlConnectionStringKey], sql =>
                 {
                     sql.EnableRetryOnFailure();
                     sql.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);

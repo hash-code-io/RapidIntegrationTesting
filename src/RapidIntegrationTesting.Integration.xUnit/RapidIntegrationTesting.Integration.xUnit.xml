@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RapidIntegrationTesting.Integration.xUnit</name>
+    </assembly>
+    <members>
+        <member name="T:RapidIntegrationTesting.Integration.xUnit.TestOrderAttribute">
+            <summary>
+                Attribute used to indicate the order for test execution
+            </summary>
+        </member>
+        <member name="M:RapidIntegrationTesting.Integration.xUnit.TestOrderAttribute.#ctor(System.UInt32)">
+            <summary>
+                Executes a test in the given order
+            </summary>
+            <param name="order"></param>
+        </member>
+        <member name="P:RapidIntegrationTesting.Integration.xUnit.TestOrderAttribute.Order">
+            <summary>
+                Test Execution Order
+            </summary>
+        </member>
+        <member name="T:RapidIntegrationTesting.Integration.xUnit.TestOrderer">
+            <summary>
+                Handels the correct ordering of test cases marked with <see cref="T:RapidIntegrationTesting.Integration.xUnit.TestOrderAttribute" />
+                To register it, use the XUnit attribute: [TestCaseOrderer(nameof(TestOrderer), TestOrderer.AssemblyName)]
+            </summary>
+        </member>
+        <member name="F:RapidIntegrationTesting.Integration.xUnit.TestOrderer.TypeName">
+            <summary>
+                Type name of the <see cref="T:RapidIntegrationTesting.Integration.xUnit.TestOrderer" />. Used in the XUnit attribute "TestCaseOrderer"
+            </summary>
+        </member>
+        <member name="F:RapidIntegrationTesting.Integration.xUnit.TestOrderer.AssemblyName">
+            <summary>
+                Assembly name of the <see cref="T:RapidIntegrationTesting.Integration.xUnit.TestOrderer" />. Used in the XUnit attribute "TestCaseOrderer"
+            </summary>
+        </member>
+        <member name="M:RapidIntegrationTesting.Integration.xUnit.TestOrderer.#ctor(Xunit.Abstractions.IMessageSink)">
+            <summary>
+                TestOrderer with a given <see cref="T:Xunit.Abstractions.IMessageSink" />
+            </summary>
+            <param name="diagnosticMessageSink"></param>
+        </member>
+        <member name="M:RapidIntegrationTesting.Integration.xUnit.TestOrderer.OrderTestCases``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+                Orders tests cases based on the <see cref="T:RapidIntegrationTesting.Integration.xUnit.TestOrderAttribute" />
+            </summary>
+            <typeparam name="TTestCase"></typeparam>
+            <param name="testCases"></param>
+            <returns></returns>
+            <exception cref="T:System.InvalidOperationException"></exception>
+        </member>
+        <member name="T:RapidIntegrationTesting.Integration.xUnit.XUnitTestingWebAppFactory`1">
+            <summary>
+                XUnit Integration for <see cref="T:RapidIntegrationTesting.Integration.TestingWebAppFactory`1" />
+            </summary>
+            <typeparam name="TEntryPoint"></typeparam>
+        </member>
+        <member name="M:RapidIntegrationTesting.Integration.xUnit.XUnitTestingWebAppFactory`1.InitializeAsync">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>
