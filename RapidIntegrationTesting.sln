@@ -33,7 +33,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RapidIntegrationTesting.Uti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RapidIntegrationTesting.Docker.Tests", "test\RapidIntegrationTesting.Docker.Tests\RapidIntegrationTesting.Docker.Tests.csproj", "{F9642B99-304F-4C2B-918D-63D9AD302D88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RapidIntegrationTesting.Integration", "src\RapidIntegrationTesting.Integration\RapidIntegrationTesting.Integration.csproj", "{8910D437-1FB5-4E91-AE25-D66439C973A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RapidIntegrationTesting.Integration", "src\RapidIntegrationTesting.Integration\RapidIntegrationTesting.Integration.csproj", "{8910D437-1FB5-4E91-AE25-D66439C973A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing.Integration.TestWebApi", "test\Testing.Integration.TestWebApi\Testing.Integration.TestWebApi.csproj", "{6826EB86-ED99-4371-8F3C-6366DEF07505}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +63,10 @@ Global
 		{8910D437-1FB5-4E91-AE25-D66439C973A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8910D437-1FB5-4E91-AE25-D66439C973A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8910D437-1FB5-4E91-AE25-D66439C973A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6826EB86-ED99-4371-8F3C-6366DEF07505}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6826EB86-ED99-4371-8F3C-6366DEF07505}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6826EB86-ED99-4371-8F3C-6366DEF07505}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6826EB86-ED99-4371-8F3C-6366DEF07505}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,6 +77,7 @@ Global
 		{93DE12C1-434C-48AB-A2E6-A230C7E76CC8} = {10A7527E-54C1-4CED-A451-6FC2672577B4}
 		{F9642B99-304F-4C2B-918D-63D9AD302D88} = {1144D6AA-C4BB-416A-A061-17721EC6C63C}
 		{8910D437-1FB5-4E91-AE25-D66439C973A3} = {10A7527E-54C1-4CED-A451-6FC2672577B4}
+		{6826EB86-ED99-4371-8F3C-6366DEF07505} = {1144D6AA-C4BB-416A-A061-17721EC6C63C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C8F8947F-9AD8-4BEC-9277-B21003A6DEEA}
