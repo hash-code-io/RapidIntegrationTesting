@@ -39,6 +39,6 @@ public class ContainerManager : IAsyncDisposable
     ///     Function to start all containers and provide configuration values based on them
     /// </summary>
     /// <returns>A list of functions to start the containers</returns>
-    public IEnumerable<ContainerStartCallback> StartContainers()
+    public IEnumerable<Task<ContainerConfigurations>> StartContainers()
         => Options.Configurations.Select(containerConfigureCallback => containerConfigureCallback(ContainerBootstrapper));
 }

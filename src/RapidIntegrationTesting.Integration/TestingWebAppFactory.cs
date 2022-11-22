@@ -40,7 +40,7 @@ public abstract class TestingWebAppFactory<TEntryPoint> : WebApplicationFactory<
     /// <inheritdoc />
     public async Task InitializeAsync()
     {
-        IEnumerable<Task<ContainerConfigurations>> containerConfigTasks = _containerManager.StartContainers().Select(x => x());
+        IEnumerable<Task<ContainerConfigurations>> containerConfigTasks = _containerManager.StartContainers();
         ContainerConfigurations[] configsArray = await Task.WhenAll(containerConfigTasks).ConfigureAwait(false);
         _containerConfigurations = new ContainerConfigurations(configsArray.SelectMany(x => x));
     }
