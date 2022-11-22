@@ -1,13 +1,20 @@
-﻿using RapidIntegrationTesting.Docker;
+﻿using DotNet.Testcontainers.Builders;
+using DotNet.Testcontainers.Containers;
 using RapidIntegrationTesting.Integration.ContainerManagement;
-using RapidIntegrationTesting.Integration.ContainerManagement.Bootstrapper;
 
 namespace RapidIntegrationTesting.Integration.Options;
 
 /// <summary>
-///     Callback used to bootstrap the container via the given <see cref="IContainerCache" /> and return a callback to run the bootstapping
+///     Wrapper class for containers and their configurations
 /// </summary>
-public delegate Task<ContainerConfigurations> ContainerConfigureCallback(IContainerCache bootstrapper);
+/// <param name="Container">Already running container</param>
+/// <param name="Configuration">Configuration from the container</param>
+public record RunningContainerInfo(ITestcontainersContainer Container, ContainerConfigurations Configuration);
+
+/// <summary>
+///     Callback used to bootstrap and start the container. Use <see cref="TestcontainersBuilder{TDockerContainer}" /> to bootstrap the container, then start it and return it along with its configuration
+/// </summary>
+public delegate Task<RunningContainerInfo> ContainerStartCallback();
 
 /// <summary>
 ///     Options to configure the Container Manager
@@ -17,10 +24,5 @@ public record WebAppFactoryContainerOptions
     /// <summary>
     ///     Configurations that should contain all containers used for testing
     /// </summary>
-    public List<ContainerConfigureCallback> Configurations { get; set; } = new();
-
-    /// <summary>
-    ///     Marker types for the assemblies containing implementations of <see cref="IContainerBootstrapper{TContainer}" />
-    /// </summary>
-    public List<Type> ContainerBootstrapperAssemblyMarkers { get; set; } = new();
+    public List<ContainerStartCallback> Configurations { get; set; } = new();
 }

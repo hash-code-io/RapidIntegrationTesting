@@ -25,13 +25,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{10A7527E-54C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{1144D6AA-C4BB-416A-A061-17721EC6C63C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RapidIntegrationTesting.Docker", "src\RapidIntegrationTesting.Docker\RapidIntegrationTesting.Docker.csproj", "{21AFACCD-DDF7-46A9-B8A3-EE4E5656801A}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RapidIntegrationTesting.SignalR", "src\RapidIntegrationTesting.SignalR\RapidIntegrationTesting.SignalR.csproj", "{39D59703-1E3B-4A78-9644-E4BFA0F99195}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RapidIntegrationTesting.Utility", "src\RapidIntegrationTesting.Utility\RapidIntegrationTesting.Utility.csproj", "{93DE12C1-434C-48AB-A2E6-A230C7E76CC8}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RapidIntegrationTesting.Docker.Tests", "test\RapidIntegrationTesting.Docker.Tests\RapidIntegrationTesting.Docker.Tests.csproj", "{F9642B99-304F-4C2B-918D-63D9AD302D88}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RapidIntegrationTesting.Integration", "src\RapidIntegrationTesting.Integration\RapidIntegrationTesting.Integration.csproj", "{8910D437-1FB5-4E91-AE25-D66439C973A3}"
 EndProject
@@ -47,10 +43,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{21AFACCD-DDF7-46A9-B8A3-EE4E5656801A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{21AFACCD-DDF7-46A9-B8A3-EE4E5656801A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{21AFACCD-DDF7-46A9-B8A3-EE4E5656801A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{21AFACCD-DDF7-46A9-B8A3-EE4E5656801A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{39D59703-1E3B-4A78-9644-E4BFA0F99195}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{39D59703-1E3B-4A78-9644-E4BFA0F99195}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39D59703-1E3B-4A78-9644-E4BFA0F99195}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -59,10 +51,6 @@ Global
 		{93DE12C1-434C-48AB-A2E6-A230C7E76CC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93DE12C1-434C-48AB-A2E6-A230C7E76CC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93DE12C1-434C-48AB-A2E6-A230C7E76CC8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F9642B99-304F-4C2B-918D-63D9AD302D88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F9642B99-304F-4C2B-918D-63D9AD302D88}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F9642B99-304F-4C2B-918D-63D9AD302D88}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F9642B99-304F-4C2B-918D-63D9AD302D88}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8910D437-1FB5-4E91-AE25-D66439C973A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8910D437-1FB5-4E91-AE25-D66439C973A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8910D437-1FB5-4E91-AE25-D66439C973A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -84,10 +72,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{21AFACCD-DDF7-46A9-B8A3-EE4E5656801A} = {10A7527E-54C1-4CED-A451-6FC2672577B4}
 		{39D59703-1E3B-4A78-9644-E4BFA0F99195} = {10A7527E-54C1-4CED-A451-6FC2672577B4}
 		{93DE12C1-434C-48AB-A2E6-A230C7E76CC8} = {10A7527E-54C1-4CED-A451-6FC2672577B4}
-		{F9642B99-304F-4C2B-918D-63D9AD302D88} = {1144D6AA-C4BB-416A-A061-17721EC6C63C}
 		{8910D437-1FB5-4E91-AE25-D66439C973A3} = {10A7527E-54C1-4CED-A451-6FC2672577B4}
 		{6826EB86-ED99-4371-8F3C-6366DEF07505} = {1144D6AA-C4BB-416A-A061-17721EC6C63C}
 		{BC3CE704-AC1D-41CD-B90F-5E3E4E5651A7} = {1144D6AA-C4BB-416A-A061-17721EC6C63C}

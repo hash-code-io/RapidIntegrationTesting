@@ -1,4 +1,6 @@
-﻿using DotNet.Testcontainers.Containers;
+﻿using DotNet.Testcontainers.Builders;
+using DotNet.Testcontainers.Configurations;
+using DotNet.Testcontainers.Containers;
 using RapidIntegrationTesting.Integration.ContainerManagement;
 using RapidIntegrationTesting.Integration.Options;
 using RapidIntegrationTesting.Integration.xUnit;
@@ -11,14 +13,19 @@ public class TestWebAppFactory : XUnitTestingWebAppFactory<UsersController>
 {
     protected override Action<WebAppFactoryOptions> ConfigureOptions => o =>
     {
-        o.Container.ContainerBootstrapperAssemblyMarkers = new List<Type> { typeof(SqlContainerBootstrapper) };
-
-        o.Container.Configurations = new List<ContainerConfigureCallback>
+        o.Container.Configurations = new List<ContainerStartCallback>
         {
-            async bootstrapper =>
+            async () =>
             {
-                MsSqlTestcontainer container = await bootstrapper.Bootstrap<MsSqlTestcontainer>();
-                return new ContainerConfigurations { new(AppConstants.SqlConnectionStringKey, container.ConnectionString + "TrustServerCertificate=true;") };
+                MsSqlTestcontainer container = new TestcontainersBuilder<MsSqlTestcontainer>()
+                    .WithDatabase(new MsSqlTestcontainerConfiguration { Password = "My@Cool$PassWord123", Database = "Testing" })
+                    .Build();
+
+                await container.StartAsync();
+                
+                var configs = new ContainerConfigurations { new(AppConstants.SqlConnectionStringKey, container.ConnectionString + "TrustServerCertificate=true;") };
+
+                return new RunningContainerInfo(container, configs);
             }
         };
     };

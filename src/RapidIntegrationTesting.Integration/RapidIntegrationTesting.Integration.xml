@@ -24,18 +24,6 @@
         <member name="P:RapidIntegrationTesting.Integration.Configuration.WebAppConfigurationValue.Value">
             <summary>The value to tuse</summary>
         </member>
-        <member name="T:RapidIntegrationTesting.Integration.ContainerManagement.Bootstrapper.IContainerCache">
-            <summary>
-                Bootstrapper for Containers
-            </summary>
-        </member>
-        <member name="M:RapidIntegrationTesting.Integration.ContainerManagement.Bootstrapper.IContainerCache.Bootstrap``1">
-            <summary>
-                Function to start a container
-            </summary>
-            <typeparam name="T">A valid container type</typeparam>
-            <returns>A task containing the started container</returns>
-        </member>
         <member name="T:RapidIntegrationTesting.Integration.ContainerManagement.ContainerConfigurations">
             <summary>
                 Holder of configurations for a container
@@ -66,11 +54,6 @@
         <member name="P:RapidIntegrationTesting.Integration.ContainerManagement.ContainerManager.Options">
             <summary>
                 Options
-            </summary>
-        </member>
-        <member name="P:RapidIntegrationTesting.Integration.ContainerManagement.ContainerManager.ContainerBootstrapper">
-            <summary>
-                Bootstrapper used to bootstrap containers
             </summary>
         </member>
         <member name="M:RapidIntegrationTesting.Integration.ContainerManagement.ContainerManager.DisposeAsync">
@@ -107,9 +90,29 @@
                 Default claims to use for authentication. Should not include the "name" claim, as that is set by <see cref="T:RapidIntegrationTesting.Integration.Options.WebAppFactoryAuthOptions" />.<see cref="P:RapidIntegrationTesting.Integration.Options.WebAppFactoryAuthOptions.DefaultTestUserName" />
             </summary>
         </member>
-        <member name="T:RapidIntegrationTesting.Integration.Options.ContainerConfigureCallback">
+        <member name="T:RapidIntegrationTesting.Integration.Options.RunningContainerInfo">
             <summary>
-                Callback used to bootstrap the container via the given <see cref="T:RapidIntegrationTesting.Integration.ContainerManagement.Bootstrapper.IContainerCache" /> and return a callback to run the bootstapping
+                Wrapper class for containers and their configurations
+            </summary>
+            <param name="Container">Already running container</param>
+            <param name="Configuration">Configuration from the container</param>
+        </member>
+        <member name="M:RapidIntegrationTesting.Integration.Options.RunningContainerInfo.#ctor(DotNet.Testcontainers.Containers.ITestcontainersContainer,RapidIntegrationTesting.Integration.ContainerManagement.ContainerConfigurations)">
+            <summary>
+                Wrapper class for containers and their configurations
+            </summary>
+            <param name="Container">Already running container</param>
+            <param name="Configuration">Configuration from the container</param>
+        </member>
+        <member name="P:RapidIntegrationTesting.Integration.Options.RunningContainerInfo.Container">
+            <summary>Already running container</summary>
+        </member>
+        <member name="P:RapidIntegrationTesting.Integration.Options.RunningContainerInfo.Configuration">
+            <summary>Configuration from the container</summary>
+        </member>
+        <member name="T:RapidIntegrationTesting.Integration.Options.ContainerStartCallback">
+            <summary>
+                Callback used to bootstrap and start the container. Use <see cref="T:DotNet.Testcontainers.Builders.TestcontainersBuilder`1" /> to bootstrap the container, then start it and return it along with its configuration
             </summary>
         </member>
         <member name="T:RapidIntegrationTesting.Integration.Options.WebAppFactoryContainerOptions">
@@ -120,11 +123,6 @@
         <member name="P:RapidIntegrationTesting.Integration.Options.WebAppFactoryContainerOptions.Configurations">
             <summary>
                 Configurations that should contain all containers used for testing
-            </summary>
-        </member>
-        <member name="P:RapidIntegrationTesting.Integration.Options.WebAppFactoryContainerOptions.ContainerBootstrapperAssemblyMarkers">
-            <summary>
-                Marker types for the assemblies containing implementations of <see cref="T:RapidIntegrationTesting.Docker.IContainerBootstrapper`1" />
             </summary>
         </member>
         <member name="T:RapidIntegrationTesting.Integration.Options.WebAppFactoryOptions">

@@ -10,10 +10,10 @@
 
 	<ItemGroup>
 	  <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="7.0.0" />
+	  <PackageReference Include="Testcontainers" Version="2.2.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\RapidIntegrationTesting.Docker\RapidIntegrationTesting.Docker.csproj" />
 	  <ProjectReference Include="..\RapidIntegrationTesting.SignalR\RapidIntegrationTesting.SignalR.csproj" />
 	</ItemGroup>
 
