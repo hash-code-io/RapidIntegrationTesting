@@ -76,30 +76,30 @@ public class ContainerBootstrapperTest
 
     // Test is failing for some reason: https://github.com/testcontainers/testcontainers-dotnet/issues/682
     //[Fact]
-    private async Task Should_Create_Azurite_Container()
-    {
-        // Arrange
-        await using var bootstrapper = new AzuriteContainerBootstrapper();
-        AzuriteTestcontainer container = await bootstrapper.Bootstrap();
+    //public async Task Should_Create_Azurite_Container()
+    //{
+    //    // Arrange
+    //    await using var bootstrapper = new AzuriteContainerBootstrapper();
+    //    AzuriteTestcontainer container = await bootstrapper.Bootstrap();
 
-        var blobServiceClient = new BlobServiceClient(container.ConnectionString);
-        string containerName = Guid.NewGuid().ToString().ToLowerInvariant();
+    //    var blobServiceClient = new BlobServiceClient(container.ConnectionString);
+    //    string containerName = Guid.NewGuid().ToString().ToLowerInvariant();
 
-        BlobContainerClient containerClient = await blobServiceClient.CreateBlobContainerAsync(containerName);
+    //    BlobContainerClient containerClient = await blobServiceClient.CreateBlobContainerAsync(containerName);
 
-        BlobClient blobClient = containerClient.GetBlobClient("testdata");
-        byte[] data = { 1, 2, 3 };
+    //    BlobClient blobClient = containerClient.GetBlobClient("testdata");
+    //    byte[] data = { 1, 2, 3 };
 
-        // Act
-        _ = await blobClient.UploadAsync(new MemoryStream(data), true);
-        Response<BlobDownloadInfo> downloaded = await blobClient.DownloadAsync();
+    //    // Act
+    //    _ = await blobClient.UploadAsync(new MemoryStream(data), true);
+    //    Response<BlobDownloadInfo> downloaded = await blobClient.DownloadAsync();
 
-        // Assert
-        Assert.NotNull(downloaded?.Value);
-        var ms = new MemoryStream();
-        await downloaded.Value.Content.CopyToAsync(ms);
-        byte[] downloadedData = ms.ToArray();
+    //    // Assert
+    //    Assert.NotNull(downloaded?.Value);
+    //    var ms = new MemoryStream();
+    //    await downloaded.Value.Content.CopyToAsync(ms);
+    //    byte[] downloadedData = ms.ToArray();
 
-        Assert.Equal(data, downloadedData);
-    }
+    //    Assert.Equal(data, downloadedData);
+    //}
 }
