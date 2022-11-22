@@ -1,38 +1,35 @@
-﻿using Azure;
-using Azure.Storage.Blobs;
-using Azure.Storage.Blobs.Models;
-using DotNet.Testcontainers.Containers;
+﻿using DotNet.Testcontainers.Containers;
 using RabbitMQ.Client;
 using RapidIntegrationTesting.Docker.Tests.Setup;
 using StackExchange.Redis;
-using System.Data.SqlClient;
 
 namespace RapidIntegrationTesting.Docker.Tests;
 
 public class ContainerBootstrapperTest
 {
-    [Fact]
-    public async Task Should_Create_Sql_Container()
-    {
-        // Arrange
-        await using var bootstrapper = new SqlContainerBootstrapper();
-        MsSqlTestcontainer container = await bootstrapper.Bootstrap();
+    // Test takes long because mssql takes a long time to boot, commenting out for now
+    //[Fact]
+    //public async Task Should_Create_Sql_Container()
+    //{
+    //    // Arrange
+    //    await using var bootstrapper = new SqlContainerBootstrapper();
+    //    MsSqlTestcontainer container = await bootstrapper.Bootstrap();
 
-        await using var con = new SqlConnection(container.ConnectionString);
-        await con.OpenAsync();
+    //    await using var con = new SqlConnection(container.ConnectionString);
+    //    await con.OpenAsync();
 
-        await using var cmd = new SqlCommand("SELECT 1", con);
+    //    await using var cmd = new SqlCommand("SELECT 1", con);
 
-        // Act
+    //    // Act
 
-        object? result = await cmd.ExecuteScalarAsync();
-        bool isInt = int.TryParse(result?.ToString(), out int resultInt);
+    //    object? result = await cmd.ExecuteScalarAsync();
+    //    bool isInt = int.TryParse(result?.ToString(), out int resultInt);
 
-        // Assert
-        Assert.NotNull(result);
-        Assert.True(isInt);
-        Assert.Equal(1, resultInt);
-    }
+    //    // Assert
+    //    Assert.NotNull(result);
+    //    Assert.True(isInt);
+    //    Assert.Equal(1, resultInt);
+    //}
 
     [Fact]
     public async Task Should_Create_Rabbit_Mq()
