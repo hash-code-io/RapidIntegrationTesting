@@ -1,14 +1,12 @@
-﻿using DotNet.Testcontainers.Containers;
-
-namespace RapidIntegrationTesting.ContainerManagement;
+﻿namespace RapidIntegrationTesting.ContainerManagement;
 
 /// <summary>
 ///     Base class for Container Management of the <see cref="TestingWebAppFactory{TEntryPoint}" />
 /// </summary>
 public static class ContainerManager
 {
-    private static readonly List<ContainerInfo> ContainerInfos = new();
-    private static readonly List<Func<Task<ContainerInfo>>> Builders = new();
+    private static readonly List<RunningContainerInfo> RunningContainers = new();
+    private static readonly List<Func<Task<RunningContainerInfo>>> Builders = new();
     private static readonly SemaphoreSlim Semaphore = new(1, 1);
 
     /// <summary>
@@ -20,32 +18,29 @@ public static class ContainerManager
         try
         {
             await Semaphore.WaitAsync();
-            if (!ContainerInfos.Any()) return;
+            if (!RunningContainers.Any()) return;
 
-            await Task.WhenAll(ContainerInfos.Select(x => x.Container.DisposeAsync().AsTask()));
-            ContainerInfos.Clear();
+            await Task.WhenAll(RunningContainers.Select(x => x.Container.DisposeAsync().AsTask()));
+            RunningContainers.Clear();
         }
         finally
         {
             Semaphore.Release();
         }
 
-        await Task.WhenAll(ContainerInfos.Select(x => x.Container.DisposeAsync().AsTask()));
-        ContainerInfos.Clear();
+        await Task.WhenAll(RunningContainers.Select(x => x.Container.DisposeAsync().AsTask()));
+        RunningContainers.Clear();
     }
 
     /// <summary>
     ///     Add containers to be started with the WebAppFactory. The given builders MUST be fully configured
     /// </summary>
-    /// <typeparam name="TContainer">The type of container</typeparam>
-    /// <param name="configurators"></param>
+    /// <param name="builderCallbacks">Callbacks used to build and start the given containers</param>
     /// <exception cref="InvalidOperationException"></exception>
-    public static void AddContainers<TContainer>(params ContainerConfigurator<TContainer>[] configurators) where TContainer : ITestcontainersContainer
+    public static void AddContainers(params Func<Task<RunningContainerInfo>>[] builderCallbacks)
     {
-        if (ContainerInfos.Any()) throw new InvalidOperationException("Containers may not be added after starting them");
-
-        IEnumerable<Func<Task<ContainerInfo>>> builders = configurators.Select(x => x.ToBuilderCallback());
-        Builders.AddRange(builders);
+        if (RunningContainers.Any()) throw new InvalidOperationException("Containers may not be added after starting them");
+        Builders.AddRange(builderCallbacks);
     }
 
     /// <summary>
@@ -58,11 +53,11 @@ public static class ContainerManager
         {
             await Semaphore.WaitAsync();
 
-            if (ContainerInfos.Any())
+            if (RunningContainers.Any())
                 return BuildConfigurations();
 
-            ContainerInfo[] infos = await Task.WhenAll(Builders.Select(build => build()));
-            ContainerInfos.AddRange(infos);
+            RunningContainerInfo[] infos = await Task.WhenAll(Builders.Select(build => build()));
+            RunningContainers.AddRange(infos);
             return BuildConfigurations();
         }
         finally
@@ -71,5 +66,5 @@ public static class ContainerManager
         }
     }
 
-    private static ContainerConfigurations BuildConfigurations() => new(ContainerInfos.SelectMany(x => x.Configurations));
+    private static ContainerConfigurations BuildConfigurations() => new(RunningContainers.SelectMany(x => x.Configurations));
 }

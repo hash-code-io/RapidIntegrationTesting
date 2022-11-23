@@ -9,24 +9,25 @@ namespace RapidIntegrationTesting.Integration.Tests;
 
 public class Initializer
 {
-    private static ContainerConfigurator<MsSqlTestcontainer> BuildSqlConfigurator()
-    {
-        ITestcontainersBuilder<MsSqlTestcontainer> sqlBuilder = new TestcontainersBuilder<MsSqlTestcontainer>()
-            .WithDatabase(new MsSqlTestcontainerConfiguration { Password = "My@Cool$PassWord123", Database = "Testing" });
-
-        return new ContainerConfigurator<MsSqlTestcontainer>(sqlBuilder, ConfigRetriever);
-
-        static ContainerConfigurations ConfigRetriever(MsSqlTestcontainer container)
+    private static Func<Task<RunningContainerInfo>> GetSqlBuilder() =>
+        async () =>
         {
-            return new ContainerConfigurations { new(AppConstants.SqlConnectionStringKey, container.ConnectionString + "TrustServerCertificate=true;") };
-        }
-    }
+            MsSqlTestcontainer container = new TestcontainersBuilder<MsSqlTestcontainer>()
+                .WithDatabase(new MsSqlTestcontainerConfiguration { Password = "My@Cool$PassWord123", Database = "Testing" })
+                .Build();
+
+            await container.StartAsync();
+
+            var configs = new ContainerConfigurations { new(AppConstants.SqlConnectionStringKey, container.ConnectionString + "TrustServerCertificate=true;") };
+
+            return new RunningContainerInfo(container, configs);
+        };
 
     [ModuleInitializer]
     public static void Initialize()
     {
-        ContainerConfigurator<MsSqlTestcontainer> sqlConfigurator = BuildSqlConfigurator();
+        Func<Task<RunningContainerInfo>> sqlBuilder = GetSqlBuilder();
 
-        ContainerManager.AddContainers(sqlConfigurator);
+        ContainerManager.AddContainers(sqlBuilder);
     }
 }

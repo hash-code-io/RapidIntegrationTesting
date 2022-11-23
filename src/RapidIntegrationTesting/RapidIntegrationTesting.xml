@@ -60,28 +60,6 @@
                 Empty list of configuration
             </summary>
         </member>
-        <member name="T:RapidIntegrationTesting.ContainerManagement.ContainerConfigurator`1">
-            <summary>
-                Wrapper class for a fully confiugred <see cref="T:DotNet.Testcontainers.Builders.ITestcontainersBuilder`1" /> and a way to retrieve configurations from the container
-            </summary>
-            <typeparam name="TContainer">The type of container</typeparam>
-            <param name="Builder">The fully configured builder</param>
-            <param name="ConfigurationRetriever">A callback to retrieve configuration</param>
-        </member>
-        <member name="M:RapidIntegrationTesting.ContainerManagement.ContainerConfigurator`1.#ctor(DotNet.Testcontainers.Builders.ITestcontainersBuilder{`0},System.Func{`0,RapidIntegrationTesting.ContainerManagement.ContainerConfigurations})">
-            <summary>
-                Wrapper class for a fully confiugred <see cref="T:DotNet.Testcontainers.Builders.ITestcontainersBuilder`1" /> and a way to retrieve configurations from the container
-            </summary>
-            <typeparam name="TContainer">The type of container</typeparam>
-            <param name="Builder">The fully configured builder</param>
-            <param name="ConfigurationRetriever">A callback to retrieve configuration</param>
-        </member>
-        <member name="P:RapidIntegrationTesting.ContainerManagement.ContainerConfigurator`1.Builder">
-            <summary>The fully configured builder</summary>
-        </member>
-        <member name="P:RapidIntegrationTesting.ContainerManagement.ContainerConfigurator`1.ConfigurationRetriever">
-            <summary>A callback to retrieve configuration</summary>
-        </member>
         <member name="T:RapidIntegrationTesting.ContainerManagement.ContainerManager">
             <summary>
                 Base class for Container Management of the <see cref="T:RapidIntegrationTesting.TestingWebAppFactory`1" />
@@ -93,12 +71,11 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:RapidIntegrationTesting.ContainerManagement.ContainerManager.AddContainers``1(RapidIntegrationTesting.ContainerManagement.ContainerConfigurator{``0}[])">
+        <member name="M:RapidIntegrationTesting.ContainerManagement.ContainerManager.AddContainers(System.Func{System.Threading.Tasks.Task{RapidIntegrationTesting.ContainerManagement.RunningContainerInfo}}[])">
             <summary>
                 Add containers to be started with the WebAppFactory. The given builders MUST be fully configured
             </summary>
-            <typeparam name="TContainer">The type of container</typeparam>
-            <param name="configurators"></param>
+            <param name="builderCallbacks">Callbacks used to build and start the given containers</param>
             <exception cref="T:System.InvalidOperationException"></exception>
         </member>
         <member name="M:RapidIntegrationTesting.ContainerManagement.ContainerManager.StartContainers">
@@ -106,6 +83,26 @@
                 Function to start all containers and provide configuration values based on them
             </summary>
             <returns>A list of functions to start the containers</returns>
+        </member>
+        <member name="T:RapidIntegrationTesting.ContainerManagement.RunningContainerInfo">
+            <summary>
+                Wrapper class for a started container along with it configuration
+            </summary>
+            <param name="Container">The started container</param>
+            <param name="Configurations">The container's configuration</param>
+        </member>
+        <member name="M:RapidIntegrationTesting.ContainerManagement.RunningContainerInfo.#ctor(DotNet.Testcontainers.Containers.ITestcontainersContainer,RapidIntegrationTesting.ContainerManagement.ContainerConfigurations)">
+            <summary>
+                Wrapper class for a started container along with it configuration
+            </summary>
+            <param name="Container">The started container</param>
+            <param name="Configurations">The container's configuration</param>
+        </member>
+        <member name="P:RapidIntegrationTesting.ContainerManagement.RunningContainerInfo.Container">
+            <summary>The started container</summary>
+        </member>
+        <member name="P:RapidIntegrationTesting.ContainerManagement.RunningContainerInfo.Configurations">
+            <summary>The container's configuration</summary>
         </member>
         <member name="T:RapidIntegrationTesting.Options.WebAppFactoryAuthOptions">
             <summary>
@@ -334,7 +331,7 @@
         </member>
         <member name="M:RapidIntegrationTesting.TestingWebAppFactory`1.Initialize">
             <summary>
-                Initializes the Factory. Needs to be called for every instance of this factory BEFORE using (i.e. via XUnit's IAsyncLifetime
+                Initializes the Factory. Needs to be called for every instance of this factory BEFORE using it (i.e. via XUnit's IAsyncLifetime)
             </summary>
             <returns></returns>
         </member>
