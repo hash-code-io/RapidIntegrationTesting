@@ -22,20 +22,20 @@ public class ImpersonationTests
     [Fact]
     public async Task Should_Work_With_Impersonation()
     {
-        async Task Run()
+        async Task Run(HttpClient client)
         {
             // Arrange
             Uri getAdminData = UrlHelper.GetAdminsDataRoute.AsRelativeUri();
 
             // Act
-            List<AdminData>? data = await _client.GetFromJsonAsync<List<AdminData>>(getAdminData);
+            List<AdminData>? data = await client.GetFromJsonAsync<List<AdminData>>(getAdminData);
 
             // Assert
             Assert.NotNull(data);
             Assert.True(data.Count > 0);
         }
 
-        await TestWebAppFactory.RunAsUser("testuser1", Run, new[] { new Claim("role", AppConstants.AdminRoleName) });
+        await _factory.RunAsAdmin(Run);
     }
 
     [Fact]

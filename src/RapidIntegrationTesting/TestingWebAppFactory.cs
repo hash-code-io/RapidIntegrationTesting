@@ -8,8 +8,6 @@ using RapidIntegrationTesting.Configuration;
 using RapidIntegrationTesting.ContainerManagement;
 using RapidIntegrationTesting.Options;
 using RapidIntegrationTesting.SignalR;
-using System.Diagnostics.CodeAnalysis;
-using System.Security.Claims;
 
 namespace RapidIntegrationTesting;
 
@@ -88,18 +86,20 @@ public abstract class TestingWebAppFactory<TEntryPoint> : WebApplicationFactory<
 
     /// <summary>
     ///     Runs the given <paramref name="testCode" /> as the given <paramref name="userName" />.
-    ///     The <paramref name="userName" /> ist used as the "name" claim. If you wish to
-    ///     add any more claims supply them as <paramref name="additionalClaims" />
+    ///     You must use the provided <see cref="HttpClient" /> for impersonation to work.
+    ///     Claims to add to the user will be looked up via <see cref="WebAppFactoryAuthOptions.UserClaimsMapping" />
     /// </summary>
     /// <param name="userName">The user to impersonate</param>
-    /// <param name="testCode">The code to run</param>
-    /// <param name="additionalClaims">Any additional claims besides the userName to add to the user's claims</param>
+    /// <param name="testCode">The code to run. Use the provided <see cref="HttpClient" /> to make calls to the server</param>
     /// <returns></returns>
-    [SuppressMessage("Design", "CA1000:Do not declare static members on generic types", Justification = "<Pending>")]
-    public static Task RunAsUser(string userName, Func<Task> testCode, IEnumerable<Claim>? additionalClaims = null)
+    public async Task RunAsUser(string userName, Func<HttpClient, Task> testCode)
     {
         if (testCode == null) throw new ArgumentNullException(nameof(testCode));
-        return TestAuthHandler.RunAsUser(userName, testCode, additionalClaims);
+
+        HttpClient client = CreateClient();
+        client.DefaultRequestHeaders.Add(AuthConstants.TestUserNameHeaderName, userName);
+
+        await testCode(client);
     }
 
     private IEnumerable<WebAppConfigurationValue> BuildConfigurations()
