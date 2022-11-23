@@ -22,8 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\RapidIntegrationTesting.Integration.xUnit\RapidIntegrationTesting.Integration.xUnit.csproj" />
     <ProjectReference Include="..\..\src\RapidIntegrationTesting.Utility\RapidIntegrationTesting.Utility.csproj" />
+    <ProjectReference Include="..\..\src\RapidIntegrationTesting.xUnit\RapidIntegrationTesting.xUnit.csproj" />
     <ProjectReference Include="..\Testing.Integration.TestWebApi\Testing.Integration.TestWebApi.csproj" />
   </ItemGroup>
 

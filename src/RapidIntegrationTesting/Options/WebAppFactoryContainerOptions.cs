@@ -1,8 +1,8 @@
 ﻿using DotNet.Testcontainers.Builders;
 using DotNet.Testcontainers.Containers;
-using RapidIntegrationTesting.Integration.ContainerManagement;
+using RapidIntegrationTesting.ContainerManagement;
 
-namespace RapidIntegrationTesting.Integration.Options;
+namespace RapidIntegrationTesting.Options;
 
 /// <summary>
 ///     Wrapper class for containers and their configurations

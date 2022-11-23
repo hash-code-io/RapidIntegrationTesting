@@ -1,4 +1,4 @@
-﻿namespace RapidIntegrationTesting.Integration.xUnit;
+﻿namespace RapidIntegrationTesting.xUnit;
 
 /// <summary>
 ///     Attribute used to indicate the order for test execution

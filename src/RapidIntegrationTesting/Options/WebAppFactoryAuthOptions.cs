@@ -1,7 +1,6 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 
-namespace RapidIntegrationTesting.Integration.Options;
+namespace RapidIntegrationTesting.Options;
 
 /// <summary>
 ///     Auth Options

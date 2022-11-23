@@ -1,4 +1,4 @@
-﻿namespace RapidIntegrationTesting.Integration.Configuration;
+﻿namespace RapidIntegrationTesting.Configuration;
 
 /// <summary>
 ///     Configuration Value to be added to the <see cref="TestingWebAppFactory{TEntryPoint}" />'s Configuration

@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.SignalR.Client;
-using RapidIntegrationTesting.SignalR;
 using System.Linq.Expressions;
 
-namespace RapidIntegrationTesting.Integration.SignalR;
+namespace RapidIntegrationTesting.SignalR;
 
 /// <summary>
 ///     Factory to create <see cref="ISignalRCallbackDescriptor" /> and set up signal receiving

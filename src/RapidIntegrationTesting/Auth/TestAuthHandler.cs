@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using RapidIntegrationTesting.Integration.Options;
+using RapidIntegrationTesting.Options;
 using System.Security.Claims;
 using System.Text.Encodings.Web;
 
-namespace RapidIntegrationTesting.Integration.Auth;
+namespace RapidIntegrationTesting.Auth;
 
 internal class TestAuthHandler : AuthenticationHandler<AuthenticationSchemeOptions>
 {

@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace RapidIntegrationTesting.Utility.Extensions;
+﻿namespace RapidIntegrationTesting.Utility.Extensions;
 
 /// <summary>
 ///     Extensions

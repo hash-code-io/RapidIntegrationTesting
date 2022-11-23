@@ -25,17 +25,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{10A7527E-54C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{1144D6AA-C4BB-416A-A061-17721EC6C63C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RapidIntegrationTesting.SignalR", "src\RapidIntegrationTesting.SignalR\RapidIntegrationTesting.SignalR.csproj", "{39D59703-1E3B-4A78-9644-E4BFA0F99195}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RapidIntegrationTesting.Utility", "src\RapidIntegrationTesting.Utility\RapidIntegrationTesting.Utility.csproj", "{93DE12C1-434C-48AB-A2E6-A230C7E76CC8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RapidIntegrationTesting.Integration", "src\RapidIntegrationTesting.Integration\RapidIntegrationTesting.Integration.csproj", "{8910D437-1FB5-4E91-AE25-D66439C973A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Testing.Integration.TestWebApi", "test\Testing.Integration.TestWebApi\Testing.Integration.TestWebApi.csproj", "{6826EB86-ED99-4371-8F3C-6366DEF07505}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing.Integration.TestWebApi", "test\Testing.Integration.TestWebApi\Testing.Integration.TestWebApi.csproj", "{6826EB86-ED99-4371-8F3C-6366DEF07505}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RapidIntegrationTesting.Integration.Tests", "test\RapidIntegrationTesting.Integration.Tests\RapidIntegrationTesting.Integration.Tests.csproj", "{BC3CE704-AC1D-41CD-B90F-5E3E4E5651A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RapidIntegrationTesting.Integration.Tests", "test\RapidIntegrationTesting.Integration.Tests\RapidIntegrationTesting.Integration.Tests.csproj", "{BC3CE704-AC1D-41CD-B90F-5E3E4E5651A7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RapidIntegrationTesting", "src\RapidIntegrationTesting\RapidIntegrationTesting.csproj", "{4F4F7ACE-0654-4C65-A8AB-5382BBD91910}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RapidIntegrationTesting.Integration.xUnit", "src\RapidIntegrationTesting.Integration.xUnit\RapidIntegrationTesting.Integration.xUnit.csproj", "{065C6535-FB22-4358-82DD-7D63F881CFEB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RapidIntegrationTesting.xUnit", "src\RapidIntegrationTesting.xUnit\RapidIntegrationTesting.xUnit.csproj", "{7394DFEA-F649-4E92-BB0A-F9C5FD783B63}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,18 +41,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{39D59703-1E3B-4A78-9644-E4BFA0F99195}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{39D59703-1E3B-4A78-9644-E4BFA0F99195}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{39D59703-1E3B-4A78-9644-E4BFA0F99195}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{39D59703-1E3B-4A78-9644-E4BFA0F99195}.Release|Any CPU.Build.0 = Release|Any CPU
 		{93DE12C1-434C-48AB-A2E6-A230C7E76CC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{93DE12C1-434C-48AB-A2E6-A230C7E76CC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93DE12C1-434C-48AB-A2E6-A230C7E76CC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93DE12C1-434C-48AB-A2E6-A230C7E76CC8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8910D437-1FB5-4E91-AE25-D66439C973A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8910D437-1FB5-4E91-AE25-D66439C973A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8910D437-1FB5-4E91-AE25-D66439C973A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8910D437-1FB5-4E91-AE25-D66439C973A3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6826EB86-ED99-4371-8F3C-6366DEF07505}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6826EB86-ED99-4371-8F3C-6366DEF07505}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6826EB86-ED99-4371-8F3C-6366DEF07505}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -63,21 +53,24 @@ Global
 		{BC3CE704-AC1D-41CD-B90F-5E3E4E5651A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC3CE704-AC1D-41CD-B90F-5E3E4E5651A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC3CE704-AC1D-41CD-B90F-5E3E4E5651A7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{065C6535-FB22-4358-82DD-7D63F881CFEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{065C6535-FB22-4358-82DD-7D63F881CFEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{065C6535-FB22-4358-82DD-7D63F881CFEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{065C6535-FB22-4358-82DD-7D63F881CFEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F4F7ACE-0654-4C65-A8AB-5382BBD91910}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F4F7ACE-0654-4C65-A8AB-5382BBD91910}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F4F7ACE-0654-4C65-A8AB-5382BBD91910}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F4F7ACE-0654-4C65-A8AB-5382BBD91910}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7394DFEA-F649-4E92-BB0A-F9C5FD783B63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7394DFEA-F649-4E92-BB0A-F9C5FD783B63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7394DFEA-F649-4E92-BB0A-F9C5FD783B63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7394DFEA-F649-4E92-BB0A-F9C5FD783B63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{39D59703-1E3B-4A78-9644-E4BFA0F99195} = {10A7527E-54C1-4CED-A451-6FC2672577B4}
 		{93DE12C1-434C-48AB-A2E6-A230C7E76CC8} = {10A7527E-54C1-4CED-A451-6FC2672577B4}
-		{8910D437-1FB5-4E91-AE25-D66439C973A3} = {10A7527E-54C1-4CED-A451-6FC2672577B4}
 		{6826EB86-ED99-4371-8F3C-6366DEF07505} = {1144D6AA-C4BB-416A-A061-17721EC6C63C}
 		{BC3CE704-AC1D-41CD-B90F-5E3E4E5651A7} = {1144D6AA-C4BB-416A-A061-17721EC6C63C}
-		{065C6535-FB22-4358-82DD-7D63F881CFEB} = {10A7527E-54C1-4CED-A451-6FC2672577B4}
+		{4F4F7ACE-0654-4C65-A8AB-5382BBD91910} = {10A7527E-54C1-4CED-A451-6FC2672577B4}
+		{7394DFEA-F649-4E92-BB0A-F9C5FD783B63} = {10A7527E-54C1-4CED-A451-6FC2672577B4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C8F8947F-9AD8-4BEC-9277-B21003A6DEEA}

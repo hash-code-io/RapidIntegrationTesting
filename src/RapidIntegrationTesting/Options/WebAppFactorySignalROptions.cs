@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.SignalR.Client;
 
-namespace RapidIntegrationTesting.Integration.Options;
+namespace RapidIntegrationTesting.Options;
 
 /// <summary>
 ///     SignalR Options

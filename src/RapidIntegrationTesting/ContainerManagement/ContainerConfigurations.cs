@@ -1,6 +1,6 @@
-﻿using RapidIntegrationTesting.Integration.Configuration;
+﻿using RapidIntegrationTesting.Configuration;
 
-namespace RapidIntegrationTesting.Integration.ContainerManagement;
+namespace RapidIntegrationTesting.ContainerManagement;
 
 /// <summary>
 ///     Holder of configurations for a container

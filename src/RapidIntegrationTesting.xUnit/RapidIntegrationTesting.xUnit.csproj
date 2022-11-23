@@ -1,11 +1,11 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<Description>RapidIntegrationTesting Integrations with XUnit</Description>
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<DocumentationFile>RapidIntegrationTesting.Integration.xUnit.xml</DocumentationFile>
+		<DocumentationFile>RapidIntegrationTesting.xUnit.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -13,7 +13,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\RapidIntegrationTesting.Integration\RapidIntegrationTesting.Integration.csproj" />
+	  <ProjectReference Include="..\RapidIntegrationTesting\RapidIntegrationTesting.csproj" />
 	</ItemGroup>
 
 </Project>

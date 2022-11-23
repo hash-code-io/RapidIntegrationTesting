@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.SignalR.Client;
-using RapidIntegrationTesting.Integration.SignalR;
 using RapidIntegrationTesting.SignalR;
 using RapidIntegrationTesting.Utility.Extensions;
 using Testing.Integration.TestWebApi.Controllers;

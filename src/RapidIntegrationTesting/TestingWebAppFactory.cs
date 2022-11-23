@@ -3,15 +3,15 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.DependencyInjection;
-using RapidIntegrationTesting.Integration.Auth;
-using RapidIntegrationTesting.Integration.Configuration;
-using RapidIntegrationTesting.Integration.ContainerManagement;
-using RapidIntegrationTesting.Integration.Options;
+using RapidIntegrationTesting.Auth;
+using RapidIntegrationTesting.Configuration;
+using RapidIntegrationTesting.ContainerManagement;
+using RapidIntegrationTesting.Options;
 using RapidIntegrationTesting.SignalR;
 using System.Diagnostics.CodeAnalysis;
 using System.Security.Claims;
 
-namespace RapidIntegrationTesting.Integration;
+namespace RapidIntegrationTesting;
 
 /// <summary>
 ///     WebAppFactory to use for tests

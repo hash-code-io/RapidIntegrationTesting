@@ -1,7 +1,7 @@
 ﻿using Xunit.Abstractions;
 using Xunit.Sdk;
 
-namespace RapidIntegrationTesting.Integration.xUnit;
+namespace RapidIntegrationTesting.xUnit;
 
 /// <summary>
 ///     Handels the correct ordering of test cases marked with <see cref="TestOrderAttribute" />

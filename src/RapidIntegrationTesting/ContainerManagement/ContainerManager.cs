@@ -1,7 +1,7 @@
 ﻿using DotNet.Testcontainers.Containers;
-using RapidIntegrationTesting.Integration.Options;
+using RapidIntegrationTesting.Options;
 
-namespace RapidIntegrationTesting.Integration.ContainerManagement;
+namespace RapidIntegrationTesting.ContainerManagement;
 
 /// <summary>
 ///     Base class for Container Management of the <see cref="TestingWebAppFactory{TEntryPoint}" />

@@ -1,6 +1,6 @@
-﻿using RapidIntegrationTesting.Integration.Configuration;
+﻿using RapidIntegrationTesting.Configuration;
 
-namespace RapidIntegrationTesting.Integration.Options;
+namespace RapidIntegrationTesting.Options;
 
 /// <summary>
 ///     Options to configure the <see cref="TestingWebAppFactory{TEntryPoint}" />

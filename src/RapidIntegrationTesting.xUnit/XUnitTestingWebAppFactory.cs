@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace RapidIntegrationTesting.Integration.xUnit;
+namespace RapidIntegrationTesting.xUnit;
 
 /// <summary>
 ///     XUnit Integration for <see cref="TestingWebAppFactory{TEntryPoint}" />
