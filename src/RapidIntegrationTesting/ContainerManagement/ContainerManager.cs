@@ -17,6 +17,19 @@ public static class ContainerManager
     /// <returns></returns>
     internal static async Task ShutdownContainers()
     {
+        try
+        {
+            await Semaphore.WaitAsync();
+            if (!ContainerInfos.Any()) return;
+
+            await Task.WhenAll(ContainerInfos.Select(x => x.Container.DisposeAsync().AsTask()));
+            ContainerInfos.Clear();
+        }
+        finally
+        {
+            Semaphore.Release();
+        }
+
         await Task.WhenAll(ContainerInfos.Select(x => x.Container.DisposeAsync().AsTask()));
         ContainerInfos.Clear();
     }
