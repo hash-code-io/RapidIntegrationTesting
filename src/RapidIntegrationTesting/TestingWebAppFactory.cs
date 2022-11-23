@@ -18,16 +18,11 @@ namespace RapidIntegrationTesting;
 public abstract class TestingWebAppFactory<TEntryPoint> : WebApplicationFactory<TEntryPoint>
     where TEntryPoint : class
 {
-    private readonly ContainerManager _containerManager;
     private readonly WebAppFactoryOptions _options = new();
     private ContainerConfigurations? _containerConfigurations;
 
     /// <inheritdoc />
-    protected TestingWebAppFactory()
-    {
-        ConfigureOptions(_options);
-        _containerManager = new ContainerManager(_options.Container);
-    }
+    protected TestingWebAppFactory() => ConfigureOptions(_options);
 
     /// <summary>
     ///     Callback to configure options
@@ -38,7 +33,7 @@ public abstract class TestingWebAppFactory<TEntryPoint> : WebApplicationFactory<
     ///     Initializes the Factory. Needs to be called for every instance of this factory BEFORE using (i.e. via XUnit's IAsyncLifetime
     /// </summary>
     /// <returns></returns>
-    public async Task Initialize() => _containerConfigurations = await _containerManager.StartContainers();
+    public async Task Initialize() => _containerConfigurations = await ContainerManager.StartContainers();
 
     /// <summary>
     ///     Method to build a <see cref="HubConnection" /> that correctly connects to the server using the DefaultHubToUse configured in the options
@@ -115,7 +110,7 @@ public abstract class TestingWebAppFactory<TEntryPoint> : WebApplicationFactory<
     {
         GC.SuppressFinalize(this);
         await base.DisposeAsync().ConfigureAwait(false);
-        await _containerManager.DisposeAsync().ConfigureAwait(false);
+        await ContainerManager.ShutdownContainers().ConfigureAwait(false);
     }
 
     /// <inheritdoc />
@@ -157,7 +152,6 @@ public abstract class TestingWebAppFactory<TEntryPoint> : WebApplicationFactory<
     {
         services.AddSingleton(options);
         services.AddSingleton(options.Auth);
-        services.AddSingleton(options.Container);
         services.AddSingleton(options.SignalR);
     }
 }

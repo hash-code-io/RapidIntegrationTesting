@@ -1,49 +1,62 @@
 ﻿using DotNet.Testcontainers.Containers;
-using RapidIntegrationTesting.Options;
 
 namespace RapidIntegrationTesting.ContainerManagement;
 
 /// <summary>
 ///     Base class for Container Management of the <see cref="TestingWebAppFactory{TEntryPoint}" />
 /// </summary>
-public class ContainerManager : IAsyncDisposable
+public static class ContainerManager
 {
-    private readonly List<ITestcontainersContainer> _containers = new();
+    private static readonly List<ContainerInfo> ContainerInfos = new();
+    private static readonly List<Func<Task<ContainerInfo>>> Builders = new();
+    private static readonly SemaphoreSlim Semaphore = new(1, 1);
 
     /// <summary>
-    ///     Initializes a new instance of the type
+    ///     Shuts down all managed containers
     /// </summary>
-    /// <param name="options"></param>
-    public ContainerManager(WebAppFactoryContainerOptions options) => Options = options ?? throw new ArgumentNullException(nameof(options));
-
-    /// <summary>
-    ///     Options
-    /// </summary>
-    protected WebAppFactoryContainerOptions Options { get; }
-
-    /// <inheritdoc />
-    public async ValueTask DisposeAsync()
+    /// <returns></returns>
+    internal static async Task ShutdownContainers()
     {
-        GC.SuppressFinalize(this);
-        await Task.WhenAll(_containers.Select(x => x.DisposeAsync().AsTask()));
-        _containers.Clear();
+        await Task.WhenAll(ContainerInfos.Select(x => x.Container.DisposeAsync().AsTask()));
+        ContainerInfos.Clear();
+    }
+
+    /// <summary>
+    ///     Add containers to be started with the WebAppFactory. The given builders MUST be fully configured
+    /// </summary>
+    /// <typeparam name="TContainer">The type of container</typeparam>
+    /// <param name="configurators"></param>
+    /// <exception cref="InvalidOperationException"></exception>
+    public static void AddContainers<TContainer>(params ContainerConfigurator<TContainer>[] configurators) where TContainer : ITestcontainersContainer
+    {
+        if (ContainerInfos.Any()) throw new InvalidOperationException("Containers may not be added after starting them");
+
+        IEnumerable<Func<Task<ContainerInfo>>> builders = configurators.Select(x => x.ToBuilderCallback());
+        Builders.AddRange(builders);
     }
 
     /// <summary>
     ///     Function to start all containers and provide configuration values based on them
     /// </summary>
     /// <returns>A list of functions to start the containers</returns>
-    public async Task<ContainerConfigurations> StartContainers()
+    internal static async Task<ContainerConfigurations> StartContainers()
     {
-        var configs = new ContainerConfigurations();
-
-        RunningContainerInfo[] infos = await Task.WhenAll(Options.Configurations.Select(configure => configure()));
-        foreach ((ITestcontainersContainer testcontainersContainer, ContainerConfigurations containerConfigurations) in infos)
+        try
         {
-            _containers.Add(testcontainersContainer);
-            configs.AddRange(containerConfigurations);
-        }
+            await Semaphore.WaitAsync();
 
-        return configs;
+            if (ContainerInfos.Any())
+                return BuildConfigurations();
+
+            ContainerInfo[] infos = await Task.WhenAll(Builders.Select(build => build()));
+            ContainerInfos.AddRange(infos);
+            return BuildConfigurations();
+        }
+        finally
+        {
+            Semaphore.Release();
+        }
     }
+
+    private static ContainerConfigurations BuildConfigurations() => new(ContainerInfos.SelectMany(x => x.Configurations));
 }

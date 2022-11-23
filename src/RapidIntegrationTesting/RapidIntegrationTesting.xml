@@ -60,24 +60,46 @@
                 Empty list of configuration
             </summary>
         </member>
+        <member name="T:RapidIntegrationTesting.ContainerManagement.ContainerConfigurator`1">
+            <summary>
+                Wrapper class for a fully confiugred <see cref="T:DotNet.Testcontainers.Builders.ITestcontainersBuilder`1" /> and a way to retrieve configurations from the container
+            </summary>
+            <typeparam name="TContainer">The type of container</typeparam>
+            <param name="Builder">The fully configured builder</param>
+            <param name="ConfigurationRetriever">A callback to retrieve configuration</param>
+        </member>
+        <member name="M:RapidIntegrationTesting.ContainerManagement.ContainerConfigurator`1.#ctor(DotNet.Testcontainers.Builders.ITestcontainersBuilder{`0},System.Func{`0,RapidIntegrationTesting.ContainerManagement.ContainerConfigurations})">
+            <summary>
+                Wrapper class for a fully confiugred <see cref="T:DotNet.Testcontainers.Builders.ITestcontainersBuilder`1" /> and a way to retrieve configurations from the container
+            </summary>
+            <typeparam name="TContainer">The type of container</typeparam>
+            <param name="Builder">The fully configured builder</param>
+            <param name="ConfigurationRetriever">A callback to retrieve configuration</param>
+        </member>
+        <member name="P:RapidIntegrationTesting.ContainerManagement.ContainerConfigurator`1.Builder">
+            <summary>The fully configured builder</summary>
+        </member>
+        <member name="P:RapidIntegrationTesting.ContainerManagement.ContainerConfigurator`1.ConfigurationRetriever">
+            <summary>A callback to retrieve configuration</summary>
+        </member>
         <member name="T:RapidIntegrationTesting.ContainerManagement.ContainerManager">
             <summary>
                 Base class for Container Management of the <see cref="T:RapidIntegrationTesting.TestingWebAppFactory`1" />
             </summary>
         </member>
-        <member name="M:RapidIntegrationTesting.ContainerManagement.ContainerManager.#ctor(RapidIntegrationTesting.Options.WebAppFactoryContainerOptions)">
+        <member name="M:RapidIntegrationTesting.ContainerManagement.ContainerManager.ShutdownContainers">
             <summary>
-                Initializes a new instance of the type
+                Shuts down all managed containers
             </summary>
-            <param name="options"></param>
+            <returns></returns>
         </member>
-        <member name="P:RapidIntegrationTesting.ContainerManagement.ContainerManager.Options">
+        <member name="M:RapidIntegrationTesting.ContainerManagement.ContainerManager.AddContainers``1(RapidIntegrationTesting.ContainerManagement.ContainerConfigurator{``0}[])">
             <summary>
-                Options
+                Add containers to be started with the WebAppFactory. The given builders MUST be fully configured
             </summary>
-        </member>
-        <member name="M:RapidIntegrationTesting.ContainerManagement.ContainerManager.DisposeAsync">
-            <inheritdoc />
+            <typeparam name="TContainer">The type of container</typeparam>
+            <param name="configurators"></param>
+            <exception cref="T:System.InvalidOperationException"></exception>
         </member>
         <member name="M:RapidIntegrationTesting.ContainerManagement.ContainerManager.StartContainers">
             <summary>
@@ -110,41 +132,6 @@
                 The scheme to use
             </summary>
         </member>
-        <member name="T:RapidIntegrationTesting.Options.RunningContainerInfo">
-            <summary>
-                Wrapper class for containers and their configurations
-            </summary>
-            <param name="Container">Already running container</param>
-            <param name="Configuration">Configuration from the container</param>
-        </member>
-        <member name="M:RapidIntegrationTesting.Options.RunningContainerInfo.#ctor(DotNet.Testcontainers.Containers.ITestcontainersContainer,RapidIntegrationTesting.ContainerManagement.ContainerConfigurations)">
-            <summary>
-                Wrapper class for containers and their configurations
-            </summary>
-            <param name="Container">Already running container</param>
-            <param name="Configuration">Configuration from the container</param>
-        </member>
-        <member name="P:RapidIntegrationTesting.Options.RunningContainerInfo.Container">
-            <summary>Already running container</summary>
-        </member>
-        <member name="P:RapidIntegrationTesting.Options.RunningContainerInfo.Configuration">
-            <summary>Configuration from the container</summary>
-        </member>
-        <member name="T:RapidIntegrationTesting.Options.ContainerStartCallback">
-            <summary>
-                Callback used to bootstrap and start the container. Use <see cref="T:DotNet.Testcontainers.Builders.TestcontainersBuilder`1" /> to bootstrap the container, then start it and return it along with its configuration
-            </summary>
-        </member>
-        <member name="T:RapidIntegrationTesting.Options.WebAppFactoryContainerOptions">
-            <summary>
-                Options to configure the Container Manager
-            </summary>
-        </member>
-        <member name="P:RapidIntegrationTesting.Options.WebAppFactoryContainerOptions.Configurations">
-            <summary>
-                Configurations that should contain all containers used for testing
-            </summary>
-        </member>
         <member name="T:RapidIntegrationTesting.Options.WebAppFactoryOptions">
             <summary>
                 Options to configure the <see cref="T:RapidIntegrationTesting.TestingWebAppFactory`1" />
@@ -153,11 +140,6 @@
         <member name="P:RapidIntegrationTesting.Options.WebAppFactoryOptions.Auth">
             <summary>
                 Authorization Options
-            </summary>
-        </member>
-        <member name="P:RapidIntegrationTesting.Options.WebAppFactoryOptions.Container">
-            <summary>
-                Container and Container Manager options
             </summary>
         </member>
         <member name="P:RapidIntegrationTesting.Options.WebAppFactoryOptions.SignalR">

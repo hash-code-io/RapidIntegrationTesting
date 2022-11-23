@@ -13,11 +13,6 @@ public record WebAppFactoryOptions
     public WebAppFactoryAuthOptions Auth { get; set; } = new();
 
     /// <summary>
-    ///     Container and Container Manager options
-    /// </summary>
-    public WebAppFactoryContainerOptions Container { get; set; } = new();
-
-    /// <summary>
     ///     Options for configuring SignalR
     /// </summary>
     public WebAppFactorySignalROptions SignalR { get; set; } = new();
