@@ -6,8 +6,7 @@ using Testing.Integration.TestWebApi.SignalR;
 
 namespace RapidIntegrationTesting.Integration.Tests.Tests;
 
-[Collection(WebAppFactoryCollectionFixture.Name)]
-public class SignalRTests
+public class SignalRTests : IClassFixture<TestWebAppFactory>
 {
     private readonly HttpClient _client;
     private readonly TestWebAppFactory _factory;

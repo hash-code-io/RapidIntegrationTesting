@@ -4,8 +4,7 @@ using Testing.Integration.TestWebApi.Data;
 
 namespace RapidIntegrationTesting.Integration.Tests.Tests;
 
-[Collection(WebAppFactoryCollectionFixture.Name)]
-public class GeneralTests
+public class GeneralTests : IClassFixture<TestWebAppFactory>
 {
     private readonly HttpClient _client;
     private readonly TestWebAppFactory _factory;

@@ -2,8 +2,7 @@
 
 namespace RapidIntegrationTesting.Integration.Tests.Tests.Seeder;
 
-[Collection(WebAppFactoryCollectionFixture.Name)]
-public class CreateDataTest
+public class CreateDataTest : IClassFixture<TestWebAppFactory>
 {
     private readonly HttpClient _client;
     private readonly Guid _createdId = Guid.Parse("22b71010-c86e-4082-90b7-86eeaef9a41c");

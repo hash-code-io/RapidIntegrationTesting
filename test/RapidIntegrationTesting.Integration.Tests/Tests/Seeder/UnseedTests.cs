@@ -3,8 +3,7 @@ using Testing.Integration.TestWebApi.Data;
 
 namespace RapidIntegrationTesting.Integration.Tests.Tests.Seeder;
 
-[Collection(WebAppFactoryCollectionFixture.Name)]
-public class UnseedTests
+public class UnseedTests : IClassFixture<TestWebAppFactory>
 {
     private readonly HttpClient _client;
     private readonly Guid _createdId = Guid.Parse("99b71010-c86e-4082-90b7-86eeaef9a41c");
@@ -15,7 +14,7 @@ public class UnseedTests
         _factory = factory;
         _client = factory.CreateClient();
     }
-    
+
 
     [Fact]
     public async Task Should_Unseed()

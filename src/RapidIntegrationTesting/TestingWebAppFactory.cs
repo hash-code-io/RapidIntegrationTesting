@@ -71,15 +71,6 @@ public abstract class TestingWebAppFactory<TEntryPoint> : WebApplicationFactory<
     }
 
     /// <summary>
-    ///     Disposable Implementation
-    /// </summary>
-    public new void Dispose()
-    {
-        DisposeAsync().AsTask().GetAwaiter().GetResult();
-        base.Dispose();
-    }
-
-    /// <summary>
     ///     Runs the given <paramref name="testCode" /> as the given <paramref name="userName" />.
     ///     You must use the provided <see cref="HttpClient" /> for impersonation to work.
     ///     Claims to add to the user will be looked up via <see cref="WebAppFactoryAuthOptions.UserClaimsMapping" />
@@ -103,14 +94,6 @@ public abstract class TestingWebAppFactory<TEntryPoint> : WebApplicationFactory<
             yield return val;
         foreach (WebAppConfigurationValue val in _options.AdditionalConfigurations)
             yield return val;
-    }
-
-    /// <inheritdoc />
-    public override async ValueTask DisposeAsync()
-    {
-        GC.SuppressFinalize(this);
-        await base.DisposeAsync().ConfigureAwait(false);
-        await ContainerManager.ShutdownContainers().ConfigureAwait(false);
     }
 
     /// <inheritdoc />

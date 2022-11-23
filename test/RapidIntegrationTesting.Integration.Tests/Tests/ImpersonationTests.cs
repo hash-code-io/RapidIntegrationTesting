@@ -1,14 +1,11 @@
 ﻿using RapidIntegrationTesting.Utility.Extensions;
 using System.Net;
 using System.Net.Http.Json;
-using System.Security.Claims;
-using Testing.Integration.TestWebApi;
 using Testing.Integration.TestWebApi.Data;
 
 namespace RapidIntegrationTesting.Integration.Tests.Tests;
 
-[Collection(WebAppFactoryCollectionFixture.Name)]
-public class ImpersonationTests
+public class ImpersonationTests : IClassFixture<TestWebAppFactory>
 {
     private readonly HttpClient _client;
     private readonly TestWebAppFactory _factory;

@@ -355,11 +355,6 @@
             <returns>The configured connection</returns>
             <exception cref="T:System.ArgumentNullException"></exception>
         </member>
-        <member name="M:RapidIntegrationTesting.TestingWebAppFactory`1.Dispose">
-            <summary>
-                Disposable Implementation
-            </summary>
-        </member>
         <member name="M:RapidIntegrationTesting.TestingWebAppFactory`1.RunAsUser(System.String,System.Func{System.Net.Http.HttpClient,System.Threading.Tasks.Task})">
             <summary>
                 Runs the given <paramref name="testCode" /> as the given <paramref name="userName" />.
@@ -369,9 +364,6 @@
             <param name="userName">The user to impersonate</param>
             <param name="testCode">The code to run. Use the provided <see cref="T:System.Net.Http.HttpClient" /> to make calls to the server</param>
             <returns></returns>
-        </member>
-        <member name="M:RapidIntegrationTesting.TestingWebAppFactory`1.DisposeAsync">
-            <inheritdoc />
         </member>
         <member name="M:RapidIntegrationTesting.TestingWebAppFactory`1.ConfigureWebHost(Microsoft.AspNetCore.Hosting.IWebHostBuilder)">
             <inheritdoc />
