@@ -30,7 +30,7 @@ public abstract class TestingWebAppFactory<TEntryPoint> : WebApplicationFactory<
     protected virtual Action<WebAppFactoryOptions> ConfigureOptions => o => { };
 
     /// <summary>
-    ///     Initializes the Factory. Needs to be called for every instance of this factory BEFORE using (i.e. via XUnit's IAsyncLifetime
+    ///     Initializes the Factory. Needs to be called for every instance of this factory BEFORE using it (i.e. via XUnit's IAsyncLifetime)
     /// </summary>
     /// <returns></returns>
     public async Task Initialize() => _containerConfigurations = await ContainerManager.StartContainers();
