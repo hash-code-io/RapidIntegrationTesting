@@ -27,9 +27,6 @@ public static class ContainerManager
         {
             Semaphore.Release();
         }
-
-        await Task.WhenAll(RunningContainers.Select(x => x.Container.DisposeAsync().AsTask()));
-        RunningContainers.Clear();
     }
 
     /// <summary>
