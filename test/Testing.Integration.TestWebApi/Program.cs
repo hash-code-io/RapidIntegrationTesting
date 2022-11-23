@@ -18,6 +18,6 @@ app.UseAuthorization();
 app.MapControllers();
 app.MapHub<SignalRHub>("hubs/frontendIntegration");
 
-app.MigrateHostedDbContext<TestDbContext>();
+await app.MigrateHostedDbContext<TestDbContext>();
 
-app.Run();
+await app.RunAsync();
