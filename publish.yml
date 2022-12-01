@@ -1,16 +1,11 @@
-name: PR Workflow
+name: Publish
 
 on:
-  pull_request:
-    branches:
-      - main
-
-concurrency:
-  group: ${{ github.ref }}
-  cancel-in-progress: true
+  release:
+    types: [published]
 
 jobs:
-  validate:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout all commits
@@ -26,11 +21,8 @@ jobs:
         env:
           NUGET_AUTH_TOKEN: ${{ secrets.NUGET_TOKEN }}
 
-      - name: Restore
-        run: dotnet restore
-
-      - name: Test
-        run: dotnet test --configuration Release --no-restore --logger trx --results-directory TestResults
-
       - name: Pack
-        run: dotnet pack --configuration Release --no-restore -o nuget-packages
+        run: dotnet pack --configuration Release -o nuget-packages
+
+      - name: Push
+        run: dotnet nuget push nuget-packages/*
