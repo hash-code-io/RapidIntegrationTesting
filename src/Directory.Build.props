@@ -5,17 +5,18 @@
 		<TargetFramework>net7.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<Copyright>Copyright 2022-2023 HashCode</Copyright>
-		<Authors>HashCode Development Team</Authors>
-		<PackageTags>cloud;testing;integration</PackageTags>
-	</PropertyGroup>
-
-
-	<PropertyGroup>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<WarningsAsErrors />
 		<Nullable>enable</Nullable>
 		<AnalysisMode>AllEnabledByDefault</AnalysisMode>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<Company>HashCode</Company>
+		<Copyright>Copyright 2022-2023 HashCode</Copyright>
+		<Authors>HashCode Development Team</Authors>
+		<PackageTags>cloud;testing;integration</PackageTags>
+		<RepositoryUrl>https://github.com/hash-code-io/RapidIntegrationTesting</RepositoryUrl>
 	</PropertyGroup>
 
 	<!-- Nuget Package Setup -->
