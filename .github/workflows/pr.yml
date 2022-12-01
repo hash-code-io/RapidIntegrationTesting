@@ -1,0 +1,36 @@
+name: PR Workflow
+
+on:
+  pull_request:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout all commits
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET 7
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 7.0.x
+          source-url: https://api.nuget.org/v3/index.json
+        env:
+          NUGET_AUTH_TOKEN: ${{ secrets.NUGET_TOKEN }}
+
+      - name: Restore
+        run: dotnet restore
+
+      - name: Test
+        run: dotnet test --configuration Release --no-restore --logger trx --results-directory TestResults
+
+      - name: Pack
+        run: dotnet pack --configuration Release --no-restore -o nuget-packages

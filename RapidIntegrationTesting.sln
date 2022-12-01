@@ -31,9 +31,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Testing.Integration.TestWeb
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RapidIntegrationTesting.Integration.Tests", "test\RapidIntegrationTesting.Integration.Tests\RapidIntegrationTesting.Integration.Tests.csproj", "{BC3CE704-AC1D-41CD-B90F-5E3E4E5651A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RapidIntegrationTesting", "src\RapidIntegrationTesting\RapidIntegrationTesting.csproj", "{4F4F7ACE-0654-4C65-A8AB-5382BBD91910}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RapidIntegrationTesting", "src\RapidIntegrationTesting\RapidIntegrationTesting.csproj", "{4F4F7ACE-0654-4C65-A8AB-5382BBD91910}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RapidIntegrationTesting.xUnit", "src\RapidIntegrationTesting.xUnit\RapidIntegrationTesting.xUnit.csproj", "{7394DFEA-F649-4E92-BB0A-F9C5FD783B63}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RapidIntegrationTesting.xUnit", "src\RapidIntegrationTesting.xUnit\RapidIntegrationTesting.xUnit.csproj", "{7394DFEA-F649-4E92-BB0A-F9C5FD783B63}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{913E73C2-F486-4374-AB47-56692E986362}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{05EDD1A9-8CE1-465F-B6C8-C34B49B40D3D}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\pr.yml = .github\workflows\pr.yml
+		publish.yml = publish.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +79,7 @@ Global
 		{BC3CE704-AC1D-41CD-B90F-5E3E4E5651A7} = {1144D6AA-C4BB-416A-A061-17721EC6C63C}
 		{4F4F7ACE-0654-4C65-A8AB-5382BBD91910} = {10A7527E-54C1-4CED-A451-6FC2672577B4}
 		{7394DFEA-F649-4E92-BB0A-F9C5FD783B63} = {10A7527E-54C1-4CED-A451-6FC2672577B4}
+		{05EDD1A9-8CE1-465F-B6C8-C34B49B40D3D} = {913E73C2-F486-4374-AB47-56692E986362}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C8F8947F-9AD8-4BEC-9277-B21003A6DEEA}
