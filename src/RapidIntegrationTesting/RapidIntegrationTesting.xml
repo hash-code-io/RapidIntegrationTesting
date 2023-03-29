@@ -91,7 +91,7 @@
             <param name="Container">The started container</param>
             <param name="Configurations">The container's configuration</param>
         </member>
-        <member name="M:RapidIntegrationTesting.ContainerManagement.RunningContainerInfo.#ctor(DotNet.Testcontainers.Containers.ITestcontainersContainer,RapidIntegrationTesting.ContainerManagement.ContainerConfigurations)">
+        <member name="M:RapidIntegrationTesting.ContainerManagement.RunningContainerInfo.#ctor(DotNet.Testcontainers.Containers.IContainer,RapidIntegrationTesting.ContainerManagement.ContainerConfigurations)">
             <summary>
                 Wrapper class for a started container along with it configuration
             </summary>

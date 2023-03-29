@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace RapidIntegrationTesting.Utility.Seeder.DbContextFactories;
 
-internal class DbContextServiceProviderCache<TDbContext> : IDbContextCache<TDbContext>
+internal sealed class DbContextServiceProviderCache<TDbContext> : IDbContextCache<TDbContext>
     where TDbContext : DbContext
 {
     private readonly IServiceProvider _serviceProvider;

@@ -2,9 +2,9 @@
 
 namespace RapidIntegrationTesting.Utility.Seeder;
 
-internal record UnseedInfo(Type EntityType, IdRetriever IdRetriever);
+internal sealed record UnseedInfo(Type EntityType, IdRetriever IdRetriever);
 
-internal class Unseeder
+internal sealed class Unseeder
 {
     private readonly List<UnseedInfo> _unseedInfos = new();
 

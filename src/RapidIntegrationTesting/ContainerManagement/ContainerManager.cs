@@ -15,12 +15,12 @@ public static class ContainerManager
     /// <returns></returns>
     internal static async Task ShutdownContainers()
     {
-        await Semaphore.WaitAsync();
+        await Semaphore.WaitAsync().ConfigureAwait(false);
         try
         {
             if (!RunningContainers.Any()) return;
 
-            await Task.WhenAll(RunningContainers.Select(x => x.Container.DisposeAsync().AsTask()));
+            await Task.WhenAll(RunningContainers.Select(x => x.Container.DisposeAsync().AsTask())).ConfigureAwait(false);
             RunningContainers.Clear();
         }
         finally
@@ -46,13 +46,13 @@ public static class ContainerManager
     /// <returns>A list of functions to start the containers</returns>
     internal static async Task<ContainerConfigurations> StartContainers()
     {
-        await Semaphore.WaitAsync();
+        await Semaphore.WaitAsync().ConfigureAwait(false);
         try
         {
             if (RunningContainers.Any())
                 return BuildConfigurations();
 
-            RunningContainerInfo[] infos = await Task.WhenAll(Builders.Select(build => build()));
+            RunningContainerInfo[] infos = await Task.WhenAll(Builders.Select(build => build())).ConfigureAwait(false);
             RunningContainers.AddRange(infos);
             return BuildConfigurations();
         }
