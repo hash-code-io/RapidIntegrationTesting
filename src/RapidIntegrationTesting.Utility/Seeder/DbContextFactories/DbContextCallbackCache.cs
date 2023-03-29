@@ -9,7 +9,7 @@ namespace RapidIntegrationTesting.Utility.Seeder.DbContextFactories;
 /// <returns>The create DbContext</returns>
 public delegate TDbContext DbContextCreator<out TDbContext>() where TDbContext : DbContext;
 
-internal class DbContextCallbackCache<TDbContext> : IDbContextCache<TDbContext> where TDbContext : DbContext
+internal sealed class DbContextCallbackCache<TDbContext> : IDbContextCache<TDbContext> where TDbContext : DbContext
 {
     private readonly DbContextCreator<TDbContext> _creator;
     private TDbContext? _context;

@@ -33,7 +33,7 @@ public abstract class TestingWebAppFactory<TEntryPoint> : WebApplicationFactory<
     ///     Initializes the Factory. Needs to be called for every instance of this factory BEFORE using it (i.e. via XUnit's IAsyncLifetime)
     /// </summary>
     /// <returns></returns>
-    public async Task Initialize() => _containerConfigurations = await ContainerManager.StartContainers();
+    public async Task Initialize() => _containerConfigurations = await ContainerManager.StartContainers().ConfigureAwait(false);
 
     /// <summary>
     ///     Method to build a <see cref="HubConnection" /> that correctly connects to the server using the DefaultHubToUse configured in the options
@@ -85,7 +85,7 @@ public abstract class TestingWebAppFactory<TEntryPoint> : WebApplicationFactory<
         HttpClient client = CreateClient();
         client.DefaultRequestHeaders.Add(AuthConstants.TestUserNameHeaderName, userName);
 
-        await testCode(client);
+        await testCode(client).ConfigureAwait(false);
     }
 
     private IEnumerable<WebAppConfigurationValue> BuildConfigurations()

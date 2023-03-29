@@ -3,12 +3,14 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Primitives;
 using RapidIntegrationTesting.Options;
+using System.Diagnostics.CodeAnalysis;
 using System.Security.Claims;
 using System.Text.Encodings.Web;
 
 namespace RapidIntegrationTesting.Auth;
 
-internal class TestAuthHandler : AuthenticationHandler<AuthenticationSchemeOptions>
+[SuppressMessage("Design", "CA1812:Avoid uninstantiated internal classes", Justification = "Instantiated by framework")]
+internal sealed class TestAuthHandler : AuthenticationHandler<AuthenticationSchemeOptions>
 {
     private readonly List<Claim> _defaultUserClaims = new() { new Claim(AuthConstants.JwtNameClaim, WebAppFactoryAuthOptions.DefaultTestUserName) };
     private readonly WebAppFactoryAuthOptions _options;

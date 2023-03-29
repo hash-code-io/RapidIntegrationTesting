@@ -1,4 +1,6 @@
-﻿namespace RapidIntegrationTesting.Utility.Extensions;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace RapidIntegrationTesting.Utility.Extensions;
 
 /// <summary>
 ///     Extensions
@@ -24,6 +26,7 @@ public static class IntegrationTestExtensions
     /// <param name="url"></param>
     /// <returns></returns>
     /// <exception cref="ArgumentNullException"></exception>
+    [SuppressMessage("Design", "CA1054:URI-like parameters should not be strings", Justification = "Pointless if it was URI")]
     public static Uri AsRelativeUri(this string url)
     {
         if (url == null) throw new ArgumentNullException(nameof(url));
@@ -37,6 +40,7 @@ public static class IntegrationTestExtensions
     /// <param name="queryParams"></param>
     /// <returns></returns>
     /// <exception cref="ArgumentNullException"></exception>
+    [SuppressMessage("Design", "CA1054:URI-like parameters should not be strings", Justification = "Pointless if it was URI")]
     public static Uri AsRelativeUri(this string url, Dictionary<string, string> queryParams)
     {
         if (url == null) throw new ArgumentNullException(nameof(url));
@@ -56,6 +60,7 @@ public static class IntegrationTestExtensions
     /// <param name="queryParams"></param>
     /// <returns></returns>
     /// <exception cref="ArgumentNullException"></exception>
+    [SuppressMessage("Design", "CA1054:URI-like parameters should not be strings", Justification = "Pointless if it was URI")]
     public static Uri AsRelativeUri(this string url, params (string key, string value)[] queryParams)
     {
         if (url == null) throw new ArgumentNullException(nameof(url));

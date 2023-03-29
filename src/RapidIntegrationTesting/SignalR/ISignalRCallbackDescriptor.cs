@@ -22,7 +22,7 @@ internal abstract class SignalRCallbackDescriptor
     protected string MethodName { get; }
 }
 
-internal class SignalRCallbackDescriptorNoValue : SignalRCallbackDescriptor, ISignalRCallbackDescriptor
+internal sealed class SignalRCallbackDescriptorNoValue : SignalRCallbackDescriptor, ISignalRCallbackDescriptor
 {
     private readonly Action _callback;
 
@@ -31,7 +31,7 @@ internal class SignalRCallbackDescriptorNoValue : SignalRCallbackDescriptor, ISi
     public IDisposable Setup(HubConnection hubConnection) => hubConnection.On(MethodName, _callback);
 }
 
-internal class SignalRAsyncCallbackDescriptorNoValue : SignalRCallbackDescriptor, ISignalRCallbackDescriptor
+internal sealed class SignalRAsyncCallbackDescriptorNoValue : SignalRCallbackDescriptor, ISignalRCallbackDescriptor
 {
     private readonly Func<Task> _callback;
 
@@ -40,7 +40,7 @@ internal class SignalRAsyncCallbackDescriptorNoValue : SignalRCallbackDescriptor
     public IDisposable Setup(HubConnection hubConnection) => hubConnection.On(MethodName, _callback);
 }
 
-internal class SignalRCallbackDescriptor<T> : SignalRCallbackDescriptor, ISignalRCallbackDescriptor
+internal sealed class SignalRCallbackDescriptor<T> : SignalRCallbackDescriptor, ISignalRCallbackDescriptor
 {
     private readonly Action<T> _callback;
 
@@ -49,7 +49,7 @@ internal class SignalRCallbackDescriptor<T> : SignalRCallbackDescriptor, ISignal
     public IDisposable Setup(HubConnection hubConnection) => hubConnection.On(MethodName, _callback);
 }
 
-internal class SignalRAsyncCallbackDescriptor<T> : SignalRCallbackDescriptor, ISignalRCallbackDescriptor
+internal sealed class SignalRAsyncCallbackDescriptor<T> : SignalRCallbackDescriptor, ISignalRCallbackDescriptor
 {
     private readonly Func<T, Task> _callback;
 
