@@ -45,7 +45,7 @@ internal sealed class TestAuthHandler : AuthenticationHandler<AuthenticationSche
     }
 
     private List<Claim> GetDefaultUserClaims() =>
-        _options.UserClaimsMapping.TryGetValue(AuthConstants.TestUserNameHeaderName, out List<Claim>? claims)
+        _options.UserClaimsMapping.TryGetValue(WebAppFactoryAuthOptions.DefaultTestUserName, out List<Claim>? claims)
             ? claims
             : _defaultUserClaims;
 }
