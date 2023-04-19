@@ -23,7 +23,7 @@
         <member name="T:RapidIntegrationTesting.xUnit.TestOrderer">
             <summary>
                 Handels the correct ordering of test cases marked with <see cref="T:RapidIntegrationTesting.xUnit.TestOrderAttribute" />
-                To register it, use the XUnit attribute: [TestCaseOrderer(nameof(TestOrderer), TestOrderer.AssemblyName)]
+                To register it, use the XUnit attribute: [TestOrderer.TypeName, TestOrderer.AssemblyName)]
             </summary>
         </member>
         <member name="F:RapidIntegrationTesting.xUnit.TestOrderer.TypeName">

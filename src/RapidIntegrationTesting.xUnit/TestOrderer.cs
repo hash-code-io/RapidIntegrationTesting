@@ -5,19 +5,19 @@ namespace RapidIntegrationTesting.xUnit;
 
 /// <summary>
 ///     Handels the correct ordering of test cases marked with <see cref="TestOrderAttribute" />
-///     To register it, use the XUnit attribute: [TestCaseOrderer(nameof(TestOrderer), TestOrderer.AssemblyName)]
+///     To register it, use the XUnit attribute: [TestOrderer.TypeName, TestOrderer.AssemblyName)]
 /// </summary>
 public class TestOrderer : ITestCaseOrderer
 {
     /// <summary>
     ///     Type name of the <see cref="TestOrderer" />. Used in the XUnit attribute "TestCaseOrderer"
     /// </summary>
-    public const string TypeName = "Testing.Utility.TestOrderer";
+    public const string TypeName = "RapidIntegrationTesting.xUnit.TestOrderer";
 
     /// <summary>
     ///     Assembly name of the <see cref="TestOrderer" />. Used in the XUnit attribute "TestCaseOrderer"
     /// </summary>
-    public const string AssemblyName = "Testing.Utility";
+    public const string AssemblyName = "RapidIntegrationTesting.xUnit";
 
     private readonly IMessageSink _diagnosticMessageSink;
 
