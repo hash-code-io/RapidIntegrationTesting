@@ -6,7 +6,6 @@ using Testing.Integration.TestWebApi;
 
 namespace RapidIntegrationTesting.Integration.Tests;
 
-//TODO: Remove when https://github.com/testcontainers/testcontainers-dotnet/pull/855 is merged.
 internal static class MsSqlContainerExtensions
 {
     public static string GetConnectionString(this MsSqlContainer container, string database)
