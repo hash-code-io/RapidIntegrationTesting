@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using RapidIntegrationTesting.Configuration;
 using RapidIntegrationTesting.ContainerManagement;
 using System.Runtime.CompilerServices;
 using Testcontainers.MsSql;
@@ -34,7 +35,9 @@ public class Initializer
                 .Build();
 
             await container.StartAsync();
-            var configs = new ContainerConfigurations { new(AppConstants.SqlConnectionStringKey, container.GetConnectionString("Testing")) };
+            var configs = new ContainerConfigurations(
+                new WebAppConfigurationValue(AppConstants.SqlConnectionStringKey, container.GetConnectionString("Testing"))
+            );
 
             return new RunningContainerInfo(container, configs);
         };
