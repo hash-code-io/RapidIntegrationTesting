@@ -13,7 +13,7 @@ public static class ContainerManager
     ///     Shuts down all managed containers
     /// </summary>
     /// <returns></returns>
-    internal static async Task ShutdownContainers()
+    public static async Task ShutdownContainers()
     {
         await Semaphore.WaitAsync().ConfigureAwait(false);
         try
@@ -44,7 +44,7 @@ public static class ContainerManager
     ///     Function to start all containers and provide configuration values based on them
     /// </summary>
     /// <returns>A list of functions to start the containers</returns>
-    internal static async Task<ContainerConfigurations> StartContainers()
+    public static async Task<ContainerConfigurations> StartContainers()
     {
         await Semaphore.WaitAsync().ConfigureAwait(false);
         try
