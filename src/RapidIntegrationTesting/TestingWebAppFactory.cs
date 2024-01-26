@@ -53,7 +53,7 @@ public abstract class TestingWebAppFactory<TEntryPoint> : WebApplicationFactory<
     /// <exception cref="ArgumentNullException"></exception>
     public HubConnection ConfigureSignalRCallbacks(string relativeHubPath, params ISignalRCallbackDescriptor[] descriptors)
     {
-        if (descriptors == null) throw new ArgumentNullException(nameof(descriptors));
+        ArgumentNullException.ThrowIfNull(descriptors);
 
         var signalRHubUri = new Uri(Server.BaseAddress, relativeHubPath);
         IHubConnectionBuilder builder = new HubConnectionBuilder()
@@ -80,7 +80,7 @@ public abstract class TestingWebAppFactory<TEntryPoint> : WebApplicationFactory<
     /// <returns></returns>
     public async Task RunAsUser(string userName, Func<HttpClient, Task> testCode)
     {
-        if (testCode == null) throw new ArgumentNullException(nameof(testCode));
+        ArgumentNullException.ThrowIfNull(testCode);
 
         HttpClient client = CreateClient();
         client.DefaultRequestHeaders.Add(AuthConstants.TestUserNameHeaderName, userName);
@@ -99,7 +99,7 @@ public abstract class TestingWebAppFactory<TEntryPoint> : WebApplicationFactory<
     /// <inheritdoc />
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
-        if (builder == null) throw new ArgumentNullException(nameof(builder));
+        ArgumentNullException.ThrowIfNull(builder);
         builder.UseEnvironment(_options.EnvironmentName);
 
         foreach ((string key, string value) in BuildConfigurations())

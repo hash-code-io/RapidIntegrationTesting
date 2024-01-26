@@ -65,7 +65,7 @@ public abstract class TestSeeder<TDbContext> : IAsyncDisposable
     /// <param name="idRetriever">A function to retrieve the entity's id</param>
     protected void Create<T>(T entity, EntityIdRetriever<T> idRetriever) where T : class
     {
-        if (idRetriever == null) throw new ArgumentNullException(nameof(idRetriever));
+        ArgumentNullException.ThrowIfNull(idRetriever);
         object[] id = idRetriever(entity);
         DbContext.Set<T>().Add(entity);
         _unseeder.Add(new UnseedInfo(typeof(T), () => id));
@@ -119,8 +119,7 @@ public abstract class TestSeeder<TDbContext> : IAsyncDisposable
     protected T FindRequiredCreated<T>(Func<T, bool> predicate) where T : class
     {
         T? entity = FindCreated(predicate);
-        if (entity is null) throw new InvalidOperationException("Entity could not be found");
-        return entity;
+        return entity ?? throw new InvalidOperationException("Entity could not be found");
     }
 
     /// <summary>
@@ -133,7 +132,6 @@ public abstract class TestSeeder<TDbContext> : IAsyncDisposable
     protected T FindRequiredCreated<T>(params object[] keyValues) where T : class
     {
         T? entity = FindCreated<T>(keyValues);
-        if (entity is null) throw new InvalidOperationException("Entity could not be found");
-        return entity;
+        return entity ?? throw new InvalidOperationException("Entity could not be found");
     }
 }
