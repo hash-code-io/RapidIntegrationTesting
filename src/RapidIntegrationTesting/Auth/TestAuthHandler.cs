@@ -15,8 +15,8 @@ internal sealed class TestAuthHandler : AuthenticationHandler<AuthenticationSche
     private readonly List<Claim> _defaultUserClaims = new() { new Claim(AuthConstants.JwtNameClaim, WebAppFactoryAuthOptions.DefaultTestUserName) };
     private readonly WebAppFactoryAuthOptions _options;
 
-    public TestAuthHandler(IOptionsMonitor<AuthenticationSchemeOptions> options, ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock, WebAppFactoryAuthOptions authOptions)
-        : base(options, logger, encoder, clock) =>
+    public TestAuthHandler(IOptionsMonitor<AuthenticationSchemeOptions> options, ILoggerFactory logger, UrlEncoder encoder, WebAppFactoryAuthOptions authOptions)
+        : base(options, logger, encoder) =>
         _options = authOptions ?? throw new ArgumentNullException(nameof(authOptions));
 
     protected override Task<AuthenticateResult> HandleAuthenticateAsync()
