@@ -24,7 +24,7 @@ public static class SignalRTestingCallbackDescriptorFactory
     /// <exception cref="TimeoutException"></exception>
     public static ISignalRCallbackDescriptor Create<TInterface, TArgument>(Expression<Func<TInterface, TArgument, Task>> expression, out Task<TArgument> signalReceived, int timeout = 30_000)
     {
-        if (expression == null) throw new ArgumentNullException(nameof(expression));
+        ArgumentNullException.ThrowIfNull(expression);
 
         string name = expression.GetNameAndEnsureParameters(1, typeof(TArgument));
         var tcs = new TaskCompletionSource<TArgument>();
@@ -47,7 +47,7 @@ public static class SignalRTestingCallbackDescriptorFactory
     /// <exception cref="ArgumentNullException"></exception>
     public static ISignalRCallbackDescriptor Create<TInterface>(Expression<Func<TInterface, Task>> expression, out Task signalReceived, int timeout = 30_000)
     {
-        if (expression == null) throw new ArgumentNullException(nameof(expression));
+        ArgumentNullException.ThrowIfNull(expression);
 
         string name = expression.GetNameAndEnsureParameters(0);
         var tcs = new TaskCompletionSource();

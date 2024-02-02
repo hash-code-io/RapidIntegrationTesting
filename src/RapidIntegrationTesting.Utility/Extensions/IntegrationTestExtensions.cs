@@ -16,7 +16,7 @@ public static class IntegrationTestExtensions
     /// <exception cref="ArgumentNullException"></exception>
     public static string GetRelativePathToController(this string controllerName, string apiVersion = "1.0")
     {
-        if (controllerName == null) throw new ArgumentNullException(nameof(controllerName));
+        ArgumentNullException.ThrowIfNull(controllerName);
         return $"api/v{apiVersion}/{controllerName.Replace("Controller", "", StringComparison.OrdinalIgnoreCase)}";
     }
 
@@ -29,7 +29,7 @@ public static class IntegrationTestExtensions
     [SuppressMessage("Design", "CA1054:URI-like parameters should not be strings", Justification = "Pointless if it was URI")]
     public static Uri AsRelativeUri(this string url)
     {
-        if (url == null) throw new ArgumentNullException(nameof(url));
+        ArgumentNullException.ThrowIfNull(url);
         return new Uri(url, UriKind.Relative);
     }
 
@@ -43,8 +43,8 @@ public static class IntegrationTestExtensions
     [SuppressMessage("Design", "CA1054:URI-like parameters should not be strings", Justification = "Pointless if it was URI")]
     public static Uri AsRelativeUri(this string url, Dictionary<string, string> queryParams)
     {
-        if (url == null) throw new ArgumentNullException(nameof(url));
-        if (queryParams == null) throw new ArgumentNullException(nameof(queryParams));
+        ArgumentNullException.ThrowIfNull(url);
+        ArgumentNullException.ThrowIfNull(queryParams);
         string paramString = queryParams.Count == 0
             ? string.Empty
             : "?" + string.Join('&', queryParams.Select(x => $"{x.Key}={x.Value}"));
@@ -63,8 +63,8 @@ public static class IntegrationTestExtensions
     [SuppressMessage("Design", "CA1054:URI-like parameters should not be strings", Justification = "Pointless if it was URI")]
     public static Uri AsRelativeUri(this string url, params (string key, string value)[] queryParams)
     {
-        if (url == null) throw new ArgumentNullException(nameof(url));
-        if (queryParams == null) throw new ArgumentNullException(nameof(queryParams));
+        ArgumentNullException.ThrowIfNull(url);
+        ArgumentNullException.ThrowIfNull(queryParams);
         string paramString = queryParams.Length == 0
             ? string.Empty
             : "?" + string.Join('&', queryParams.Select(x => $"{x.key}={x.value}"));

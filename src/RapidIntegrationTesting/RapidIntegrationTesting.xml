@@ -49,20 +49,48 @@
                 Holder of configurations for a container
             </summary>
         </member>
-        <member name="M:RapidIntegrationTesting.ContainerManagement.ContainerConfigurations.#ctor">
-            <inheritdoc />
+        <member name="M:RapidIntegrationTesting.ContainerManagement.ContainerConfigurations.#ctor(RapidIntegrationTesting.Configuration.WebAppConfigurationValue[])">
+            <summary>
+                Initializes a new <see cref="T:RapidIntegrationTesting.ContainerManagement.ContainerConfigurations" />
+            </summary>
+            <param name="collection">The items to initialize <see cref="T:RapidIntegrationTesting.ContainerManagement.ContainerConfigurations" /> with</param>
         </member>
         <member name="M:RapidIntegrationTesting.ContainerManagement.ContainerConfigurations.#ctor(System.Collections.Generic.IEnumerable{RapidIntegrationTesting.Configuration.WebAppConfigurationValue})">
-            <inheritdoc />
+            <summary>
+                Initializes a new <see cref="T:RapidIntegrationTesting.ContainerManagement.ContainerConfigurations" />
+            </summary>
+            <param name="collection">The items to initialize <see cref="T:RapidIntegrationTesting.ContainerManagement.ContainerConfigurations" /> with</param>
         </member>
         <member name="P:RapidIntegrationTesting.ContainerManagement.ContainerConfigurations.Empty">
             <summary>
                 Empty list of configuration
             </summary>
         </member>
+        <member name="M:RapidIntegrationTesting.ContainerManagement.ContainerConfigurations.GetEnumerator">
+            <inheritdoc />
+        </member>
+        <member name="M:RapidIntegrationTesting.ContainerManagement.ContainerConfigurations.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc />
+        </member>
+        <member name="P:RapidIntegrationTesting.ContainerManagement.ContainerConfigurations.Count">
+            <inheritdoc />
+        </member>
+        <member name="P:RapidIntegrationTesting.ContainerManagement.ContainerConfigurations.Item(System.Int32)">
+            <inheritdoc />
+        </member>
         <member name="T:RapidIntegrationTesting.ContainerManagement.ContainerManager">
             <summary>
                 Base class for Container Management of the <see cref="T:RapidIntegrationTesting.TestingWebAppFactory`1" />
+            </summary>
+        </member>
+        <member name="P:RapidIntegrationTesting.ContainerManagement.ContainerManager.HasRunningContainers">
+            <summary>
+                Whether or not the Manager currently has any running containers
+            </summary>
+        </member>
+        <member name="P:RapidIntegrationTesting.ContainerManagement.ContainerManager.RunningContainerConfigurations">
+            <summary>
+                Configurations of all currently running containers
             </summary>
         </member>
         <member name="M:RapidIntegrationTesting.ContainerManagement.ContainerManager.ShutdownContainers">
@@ -73,14 +101,22 @@
         </member>
         <member name="M:RapidIntegrationTesting.ContainerManagement.ContainerManager.AddContainers(System.Func{System.Threading.Tasks.Task{RapidIntegrationTesting.ContainerManagement.RunningContainerInfo}}[])">
             <summary>
-                Add containers to be started with the WebAppFactory. The given builders MUST be fully configured
+                Add containers to be started. The given builders MUST be fully configured
             </summary>
             <param name="builderCallbacks">Callbacks used to build and start the given containers</param>
             <exception cref="T:System.InvalidOperationException"></exception>
         </member>
+        <member name="M:RapidIntegrationTesting.ContainerManagement.ContainerManager.ClearContainers">
+            <summary>
+                Clears all container builders from the internal state. This does NOT stop the containers. If any containers are running they need to be stopped
+                by calling <see cref="M:RapidIntegrationTesting.ContainerManagement.ContainerManager.ShutdownContainers" /> first.
+            </summary>
+            <exception cref="T:System.InvalidOperationException"></exception>
+        </member>
         <member name="M:RapidIntegrationTesting.ContainerManagement.ContainerManager.StartContainers">
             <summary>
-                Function to start all containers and provide configuration values based on them
+                Function to start all containers and provide configuration values based on them.
+                Function
             </summary>
             <returns>A list of functions to start the containers</returns>
         </member>

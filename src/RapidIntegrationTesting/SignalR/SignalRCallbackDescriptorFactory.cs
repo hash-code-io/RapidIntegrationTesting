@@ -18,7 +18,7 @@ public static class SignalRCallbackDescriptorFactory
     /// <exception cref="ArgumentNullException"></exception>
     public static ISignalRCallbackDescriptor Create<TInterface>(Expression<Func<TInterface, Task>> expression, Action handler)
     {
-        if (expression == null) throw new ArgumentNullException(nameof(expression));
+        ArgumentNullException.ThrowIfNull(expression);
 
         string name = expression.GetNameAndEnsureParameters(0);
         return new SignalRCallbackDescriptorNoValue(name, handler);
@@ -34,8 +34,7 @@ public static class SignalRCallbackDescriptorFactory
     /// <exception cref="ArgumentNullException"></exception>
     public static ISignalRCallbackDescriptor Create<TInterface>(Expression<Func<TInterface, Task>> expression, Func<Task> handler)
     {
-        if (expression == null)
-            throw new ArgumentNullException(nameof(expression));
+        ArgumentNullException.ThrowIfNull(expression);
 
         string name = expression.GetNameAndEnsureParameters(0);
         return new SignalRAsyncCallbackDescriptorNoValue(name, handler);
@@ -52,7 +51,7 @@ public static class SignalRCallbackDescriptorFactory
     /// <exception cref="ArgumentNullException"></exception>
     public static ISignalRCallbackDescriptor Create<TInterface, TArgument>(Expression<Func<TInterface, TArgument, Task>> expression, Action<TArgument> handler)
     {
-        if (expression == null) throw new ArgumentNullException(nameof(expression));
+        ArgumentNullException.ThrowIfNull(expression);
 
         string name = expression.GetNameAndEnsureParameters(1, typeof(TArgument));
         return new SignalRCallbackDescriptor<TArgument>(name, handler);
@@ -69,8 +68,7 @@ public static class SignalRCallbackDescriptorFactory
     /// <exception cref="ArgumentNullException"></exception>
     public static ISignalRCallbackDescriptor Create<TInterface, TArgument>(Expression<Func<TInterface, TArgument, Task>> expression, Func<TArgument, Task> handler)
     {
-        if (expression == null)
-            throw new ArgumentNullException(nameof(expression));
+        ArgumentNullException.ThrowIfNull(expression);
 
         string name = expression.GetNameAndEnsureParameters(1, typeof(TArgument));
         return new SignalRAsyncCallbackDescriptor<TArgument>(name, handler);

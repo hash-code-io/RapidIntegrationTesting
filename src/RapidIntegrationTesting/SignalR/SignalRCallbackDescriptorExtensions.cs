@@ -15,7 +15,7 @@ public static class SignalRCallbackDescriptorExtensions
     /// <exception cref="ArgumentNullException"></exception>
     public static void RegisterDescriptors(this HubConnection hubConnection, params ISignalRCallbackDescriptor[] descriptors)
     {
-        if (descriptors == null) throw new ArgumentNullException(nameof(descriptors));
+        ArgumentNullException.ThrowIfNull(descriptors);
         foreach (ISignalRCallbackDescriptor signalrCallbackDescriptor in descriptors)
             signalrCallbackDescriptor.Setup(hubConnection);
     }
@@ -30,7 +30,7 @@ public static class SignalRCallbackDescriptorExtensions
     /// <exception cref="ArgumentNullException"></exception>
     public static HubConnection Build(this IHubConnectionBuilder builder, params ISignalRCallbackDescriptor[] descriptors)
     {
-        if (builder == null) throw new ArgumentNullException(nameof(builder));
+        ArgumentNullException.ThrowIfNull(builder);
         HubConnection hubConnection = builder.Build();
         hubConnection.RegisterDescriptors(descriptors);
         return hubConnection;
