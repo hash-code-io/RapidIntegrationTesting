@@ -1,7 +1,7 @@
 <Project>
   <ItemGroup>
     <!--build related-->
-    <PackageReference Include="MinVer" Version="5.0.0" PrivateAssets="All" />
+    <PackageReference Include="MinVer" Version="6.0.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.SourceLink.Github" Version="8.0.0" PrivateAssets="All"/>
   </ItemGroup>
 
