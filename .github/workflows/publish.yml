@@ -13,6 +13,11 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9'
+
       - name: Pack
         run: dotnet pack --configuration Release -o nuget-packages
 
