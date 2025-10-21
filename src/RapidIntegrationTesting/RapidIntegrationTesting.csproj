@@ -5,9 +5,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="9.0.7" />
-		<PackageReference Include="Testcontainers" Version="4.6.0" />
-		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="9.0.7" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="9.0.10" />
+		<PackageReference Include="Testcontainers" Version="4.8.0" />
+		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="9.0.10" />
 	</ItemGroup>
 
 	<PropertyGroup>
