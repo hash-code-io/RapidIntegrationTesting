@@ -32,8 +32,8 @@ public static class SetUpExtensions
                 options.Audience = "myAud";
 
                 // Clears Microsoft's annoying JwtClaimType -> XMLClaimType mappings
-                options.SecurityTokenValidators.Clear();
-                options.SecurityTokenValidators.Add(new JwtSecurityTokenHandler { InboundClaimTypeMap = new Dictionary<string, string>() });
+                options.TokenHandlers.Clear();
+                options.TokenHandlers.Add(new JwtSecurityTokenHandler { InboundClaimTypeMap = new Dictionary<string, string>() });
 
                 options.TokenValidationParameters.NameClaimType = "name";
                 options.TokenValidationParameters.RoleClaimType = "role";
