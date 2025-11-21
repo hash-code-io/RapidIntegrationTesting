@@ -49,13 +49,12 @@
                 Holder of configurations for a container
             </summary>
         </member>
-        <member name="M:RapidIntegrationTesting.ContainerManagement.ContainerConfigurations.#ctor(RapidIntegrationTesting.Configuration.WebAppConfigurationValue[])">
-            <summary>
-                Initializes a new <see cref="T:RapidIntegrationTesting.ContainerManagement.ContainerConfigurations" />
-            </summary>
-            <param name="collection">The items to initialize <see cref="T:RapidIntegrationTesting.ContainerManagement.ContainerConfigurations" /> with</param>
-        </member>
         <member name="M:RapidIntegrationTesting.ContainerManagement.ContainerConfigurations.#ctor(System.Collections.Generic.IEnumerable{RapidIntegrationTesting.Configuration.WebAppConfigurationValue})">
+            <summary>
+                Holder of configurations for a container
+            </summary>
+        </member>
+        <member name="M:RapidIntegrationTesting.ContainerManagement.ContainerConfigurations.#ctor(RapidIntegrationTesting.Configuration.WebAppConfigurationValue[])">
             <summary>
                 Initializes a new <see cref="T:RapidIntegrationTesting.ContainerManagement.ContainerConfigurations" />
             </summary>
@@ -360,7 +359,7 @@
         <member name="M:RapidIntegrationTesting.TestingWebAppFactory`1.#ctor">
             <inheritdoc />
         </member>
-        <member name="P:RapidIntegrationTesting.TestingWebAppFactory`1.ConfigureOptions">
+        <member name="M:RapidIntegrationTesting.TestingWebAppFactory`1.ConfigureOptions(RapidIntegrationTesting.Options.WebAppFactoryOptions)">
             <summary>
                 Callback to configure options
             </summary>

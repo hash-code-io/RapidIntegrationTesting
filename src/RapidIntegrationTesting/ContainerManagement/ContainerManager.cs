@@ -6,8 +6,8 @@
 public static class ContainerManager
 {
     private const string ContainerModificationError = $"Containers may not be added after starting them. Call {nameof(ShutdownContainers)} first if this is what you intended to do";
-    private static readonly List<RunningContainerInfo> RunningContainers = new();
-    private static readonly List<Func<Task<RunningContainerInfo>>> Builders = new();
+    private static readonly List<RunningContainerInfo> RunningContainers = [];
+    private static readonly List<Func<Task<RunningContainerInfo>>> Builders = [];
     private static readonly SemaphoreSlim Semaphore = new(1, 1);
 
     /// <summary>

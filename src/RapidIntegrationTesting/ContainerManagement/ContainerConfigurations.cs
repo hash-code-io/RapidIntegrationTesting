@@ -6,9 +6,9 @@ namespace RapidIntegrationTesting.ContainerManagement;
 /// <summary>
 ///     Holder of configurations for a container
 /// </summary>
-public sealed class ContainerConfigurations : IReadOnlyList<WebAppConfigurationValue>
+public sealed class ContainerConfigurations(IEnumerable<WebAppConfigurationValue> collection) : IReadOnlyList<WebAppConfigurationValue>
 {
-    private readonly List<WebAppConfigurationValue> _inner;
+    private readonly List<WebAppConfigurationValue> _inner = [.. collection];
 
     /// <summary>
     ///     Initializes a new <see cref="ContainerConfigurations" />
@@ -17,15 +17,9 @@ public sealed class ContainerConfigurations : IReadOnlyList<WebAppConfigurationV
     public ContainerConfigurations(params WebAppConfigurationValue[] collection) : this((IEnumerable<WebAppConfigurationValue>)collection) { }
 
     /// <summary>
-    ///     Initializes a new <see cref="ContainerConfigurations" />
-    /// </summary>
-    /// <param name="collection">The items to initialize <see cref="ContainerConfigurations" /> with</param>
-    public ContainerConfigurations(IEnumerable<WebAppConfigurationValue> collection) => _inner = new List<WebAppConfigurationValue>(collection);
-
-    /// <summary>
     ///     Empty list of configuration
     /// </summary>
-    public static ContainerConfigurations Empty { get; } = new();
+    public static ContainerConfigurations Empty { get; } = new([]);
 
     /// <inheritdoc />
     public IEnumerator<WebAppConfigurationValue> GetEnumerator() => _inner.GetEnumerator();
