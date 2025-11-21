@@ -11,7 +11,7 @@ internal class TestSeederImplementation : TestSeeder<TestDbContext>
 
     public TestSeederImplementation CreateComplicatedData(Guid id)
     {
-        Create(new ComplicatedData { Id = id, Name = new Name("Herp", "Derp")});
+        Create(new ComplicatedData { Id = id, Name = new Name("Herp", "Derp") });
         return this;
     }
 }

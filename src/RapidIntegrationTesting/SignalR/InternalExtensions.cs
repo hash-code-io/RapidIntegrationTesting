@@ -31,7 +31,7 @@ internal static class InternalExtensions
         {
             Type expected = expectedTypes[i];
             Type actual = parameterInfos[i].ParameterType;
-            if(expected != actual)
+            if (expected != actual)
                 throw new InvalidOperationException($"Given method argument was of type {actual.Name}, but {expected.Name} was expected");
         }
 

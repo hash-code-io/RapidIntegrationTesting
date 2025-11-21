@@ -10,14 +10,11 @@ using System.Text.Encodings.Web;
 namespace RapidIntegrationTesting.Auth;
 
 [SuppressMessage("Design", "CA1812:Avoid uninstantiated internal classes", Justification = "Instantiated by framework")]
-internal sealed class TestAuthHandler : AuthenticationHandler<AuthenticationSchemeOptions>
+internal sealed class TestAuthHandler(IOptionsMonitor<AuthenticationSchemeOptions> options, ILoggerFactory logger, UrlEncoder encoder, WebAppFactoryAuthOptions authOptions)
+    : AuthenticationHandler<AuthenticationSchemeOptions>(options, logger, encoder)
 {
-    private readonly List<Claim> _defaultUserClaims = new() { new Claim(AuthConstants.JwtNameClaim, WebAppFactoryAuthOptions.DefaultTestUserName) };
-    private readonly WebAppFactoryAuthOptions _options;
-
-    public TestAuthHandler(IOptionsMonitor<AuthenticationSchemeOptions> options, ILoggerFactory logger, UrlEncoder encoder, WebAppFactoryAuthOptions authOptions)
-        : base(options, logger, encoder) =>
-        _options = authOptions ?? throw new ArgumentNullException(nameof(authOptions));
+    private readonly List<Claim> _defaultUserClaims = [new Claim(AuthConstants.JwtNameClaim, WebAppFactoryAuthOptions.DefaultTestUserName)];
+    private readonly WebAppFactoryAuthOptions _options = authOptions ?? throw new ArgumentNullException(nameof(authOptions));
 
     protected override Task<AuthenticateResult> HandleAuthenticateAsync()
     {

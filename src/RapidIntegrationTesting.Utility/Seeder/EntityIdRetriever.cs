@@ -30,8 +30,8 @@ internal static class EntityIdRetrievers
     {
         foreach (string idPropertyName in idPropertyNames)
         {
-            PropertyInfo? prop = typeof(TEntity).GetProperty(idPropertyName);
-            if (prop is null) throw new InvalidOperationException($"Entity of type {typeof(TEntity).Name} did not include a property with name {idPropertyName}");
+            if (typeof(TEntity).GetProperty(idPropertyName) is null)
+                throw new InvalidOperationException($"Entity of type {typeof(TEntity).Name} did not include a property with name {idPropertyName}");
         }
     }
 }

@@ -15,7 +15,7 @@ public record WebAppFactoryAuthOptions
     /// <summary>
     ///     Mappings from UserNames to Claims.
     /// </summary>
-    public Dictionary<string, List<Claim>> UserClaimsMapping { get; } = new();
+    public Dictionary<string, List<Claim>> UserClaimsMapping { get; } = [];
 
     /// <summary>
     ///     Whether or not to set up a call to AddAuthentication with given options

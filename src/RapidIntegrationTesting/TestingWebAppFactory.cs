@@ -18,16 +18,25 @@ namespace RapidIntegrationTesting;
 public abstract class TestingWebAppFactory<TEntryPoint> : WebApplicationFactory<TEntryPoint>
     where TEntryPoint : class
 {
-    private readonly WebAppFactoryOptions _options = new();
+    private readonly Lazy<WebAppFactoryOptions> _optionsLazy;
+    private WebAppFactoryOptions Options => _optionsLazy.Value;
     private ContainerConfigurations? _containerConfigurations;
 
     /// <inheritdoc />
-    protected TestingWebAppFactory() => ConfigureOptions(_options);
+    protected TestingWebAppFactory()
+    {
+        _optionsLazy = new Lazy<WebAppFactoryOptions>(() =>
+        {
+            var options = new WebAppFactoryOptions();
+            ConfigureOptions(options);
+            return options;
+        });
+    }
 
     /// <summary>
     ///     Callback to configure options
     /// </summary>
-    protected virtual Action<WebAppFactoryOptions> ConfigureOptions => o => { };
+    protected virtual void ConfigureOptions(WebAppFactoryOptions options) { }
 
     /// <summary>
     ///     Initializes the Factory. Needs to be called for every instance of this factory BEFORE using it (i.e. via XUnit's IAsyncLifetime)
@@ -42,7 +51,7 @@ public abstract class TestingWebAppFactory<TEntryPoint> : WebApplicationFactory<
     /// <param name="descriptors">The descriptors to add to the connection</param>
     /// <returns>The configured connection</returns>
     public HubConnection ConfigureSignalRCallbacks(params ISignalRCallbackDescriptor[] descriptors)
-        => ConfigureSignalRCallbacks(_options.SignalR.DefaultHubToUse, descriptors);
+        => ConfigureSignalRCallbacks(Options.SignalR.DefaultHubToUse, descriptors);
 
     /// <summary>
     ///     Method to build a <see cref="HubConnection" /> that correctly connects to the server and listents to the given <paramref name="descriptors" />
@@ -61,7 +70,7 @@ public abstract class TestingWebAppFactory<TEntryPoint> : WebApplicationFactory<
             {
                 o.HttpMessageHandlerFactory = _ => Server.CreateHandler();
             });
-        _options.SignalR.FurtherConfig(builder);
+        Options.SignalR.FurtherConfig(builder);
         HubConnection connection = builder.Build();
 
         foreach (ISignalRCallbackDescriptor descriptor in descriptors)
@@ -90,9 +99,9 @@ public abstract class TestingWebAppFactory<TEntryPoint> : WebApplicationFactory<
 
     private IEnumerable<WebAppConfigurationValue> BuildConfigurations()
     {
-        foreach (WebAppConfigurationValue val in _containerConfigurations ?? Enumerable.Empty<WebAppConfigurationValue>())
+        foreach (WebAppConfigurationValue val in _containerConfigurations ?? [])
             yield return val;
-        foreach (WebAppConfigurationValue val in _options.AdditionalConfigurations)
+        foreach (WebAppConfigurationValue val in Options.AdditionalConfigurations)
             yield return val;
     }
 
@@ -100,15 +109,15 @@ public abstract class TestingWebAppFactory<TEntryPoint> : WebApplicationFactory<
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         ArgumentNullException.ThrowIfNull(builder);
-        builder.UseEnvironment(_options.EnvironmentName);
+        builder.UseEnvironment(Options.EnvironmentName);
 
         foreach ((string key, string value) in BuildConfigurations())
             builder.UseSetting(key, value);
 
         builder.ConfigureServices(services =>
         {
-            SetUpRequiredTestServices(services, _options);
-            SetUpTestAuth(services, _options.Auth);
+            SetUpRequiredTestServices(services, Options);
+            SetUpTestAuth(services, Options.Auth);
         });
     }
 
